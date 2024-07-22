@@ -4,7 +4,7 @@ import cartIcon from "../icons/cart.png"
 
 const Navbar = () => {
   return (
-    <div className='w-full shadow-lg flex justify-between p-4 md:px-24 fixed bg-white duration-500'>
+    <div className='w-full shadow-lg flex justify-between p-4 md:px-24 fixed gap-2 bg-white duration-500 z-[10000]'>
       <div className='flex items-center' >
         <p className='font-semibold'>CobaUjian.com</p>
       </div>
