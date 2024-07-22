@@ -24,11 +24,11 @@ const paket1 = () => {
       items: 2
     }, 
     miniMobile : {
-      breakpoint: { max: 520, min: 404 },
+      breakpoint: { max: 520, min: 380 },
       items: 1.5
     }, 
     microMobile : {
-      breakpoint: { max: 404, min: 0 },
+      breakpoint: { max: 380, min: 0 },
       items: 1
     } 
   };

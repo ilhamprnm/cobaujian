@@ -3,16 +3,16 @@ import heroImage from '../images/hero_image.webp'
 
 const Hero = () => {
   return (
-    <div className='p-24 px-4 md:px-24 flex gap-3 flex-col md:flex-row'>
-      <div className='md:order-last mx-auto'>
-        <img className=' w-[486px]' src={heroImage} alt="hero-image" />
+    <div className='p-24 py-28 px-4 md:px-24 flex gap-3 flex-col md:flex-row'>
+      <div className='w-4/5 md:w-1/2 md:order-last mx-auto'>
+        <img className='w-full md:w-[486px]' src={heroImage} alt="hero-image" />
       </div>
-      <div className='mx-auto flex flex-col gap-4 justify-center items-center'>
+      <div className='p-6 md:w-1/2 flex flex-col gap-4 justify-center items-center'>
         <div>
-          <h1 className='font-bold text-2xl'>Uji Diri, Asah Kemampuanmu!</h1>
+          <h1 className='w-full font-bold text-2xl text-center'>Uji Diri, Asah Kemampuanmu!</h1>
         </div>
-        <div className='text-center'>
-          <p className='text-xl w-96'>Temukan simulasi ujian berkualitas dan kumpulan soal terlengkap untuk persiapan ujianmu. Ayo, tingkatkan kepercayaan diri dan wujudkan impianmu!</p>
+        <div className=''>
+          <p className='text-lg text-center'>Temukan simulasi ujian berkualitas dan kumpulan soal terlengkap untuk persiapan ujianmu. Ayo, tingkatkan kepercayaan diri dan wujudkan impianmu!</p>
         </div>
         <div>
           <button className='p-2 px-10 rounded-md bg-green-600 font-bold text-white'>Cari Ujian</button>
