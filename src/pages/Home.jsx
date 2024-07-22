@@ -5,6 +5,7 @@ import PaketSection from '../components/PaketSection.jsx'
 import TestimoniSection from '../components/TestimoniSection.jsx'
 import FAQSection from '../components/FAQSection.jsx'
 import DemoSection from '../components/DemoSection.jsx';
+import Footer from '../components/Footer.jsx'
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <TestimoniSection />
       <FAQSection />
       <DemoSection />
+      <Footer />
     </>
   )
 }
