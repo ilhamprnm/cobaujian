@@ -7,12 +7,12 @@ const Hero = () => {
       <div className='w-4/5 md:w-1/2 md:order-last mx-auto'>
         <img className='w-full md:w-[486px]' src={heroImage} alt="hero-image" />
       </div>
-      <div className='p-6 md:w-1/2 flex flex-col gap-4 justify-center items-center'>
+      <div className='p-6 md:w-1/2 flex flex-col gap-4 justify-center items-center md:items-start'>
         <div>
-          <h1 className='w-full font-bold text-2xl text-center'>Uji Diri, Asah Kemampuanmu!</h1>
+          <h1 className='w-full font-bold text-2xl text-center md:text-start'>Uji Diri, Asah Kemampuanmu!</h1>
         </div>
         <div className=''>
-          <p className='text-lg text-center'>Temukan simulasi ujian berkualitas dan kumpulan soal terlengkap untuk persiapan ujianmu. Ayo, tingkatkan kepercayaan diri dan wujudkan impianmu!</p>
+          <p className='text-lg text-center md:text-start'>Temukan simulasi ujian berkualitas dan kumpulan soal terlengkap untuk persiapan ujianmu. Ayo, tingkatkan kepercayaan diri dan wujudkan impianmu!</p>
         </div>
         <div>
           <button className='p-2 px-10 rounded-md bg-green-600 font-bold text-white'>Cari Ujian</button>

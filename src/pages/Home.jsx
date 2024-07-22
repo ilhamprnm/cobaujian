@@ -4,6 +4,7 @@ import Hero from '../components/Hero.jsx'
 import PaketSection from '../components/PaketSection.jsx'
 import TestimoniSection from '../components/TestimoniSection.jsx'
 import FAQSection from '../components/FAQSection.jsx'
+import DemoSection from '../components/DemoSection.jsx';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <PaketSection />
       <TestimoniSection />
       <FAQSection />
+      <DemoSection />
     </>
   )
 }
