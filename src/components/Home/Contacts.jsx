@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import contacts from '../icons/contacts.png'
-import close from '../icons/close.png'
-import whatsappWhite from '../icons/whatsapp-white.png'
-import instagramWhite from '../icons/instagram-white.png'
-import tiktok from '../icons/tiktok.jpg'
+import contacts from '../../icons/contacts.png'
+import close from '../../icons/close.png'
+import whatsappWhite from '../../icons/whatsapp-white.png'
+import instagramWhite from '../../icons/instagram-white.png'
+import tiktok from '../../icons/tiktok.jpg'
 
 const Contacts = () => {
   const [opened, setOpened] = useState(false);

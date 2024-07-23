@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import downArrow from '../icons/down-arrow.png'
+import downArrow from '../../icons/down-arrow.png'
 
 
 const FAQSection = () => {

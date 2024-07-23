@@ -1,7 +1,7 @@
 import React from 'react'
-import instagram from '../icons/instagram.png'
-import tiktok from '../icons/tiktok.png'
-import whatsapp from '../icons/whatsapp.png'
+import instagram from '../../icons/instagram.png'
+import tiktok from '../../icons/tiktok.png'
+import whatsapp from '../../icons/whatsapp.png'
 
 const Footer = () => {
   return (

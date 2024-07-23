@@ -1,5 +1,5 @@
 import React from 'react'
-import demoImage from '../images/demo.webp'
+import demoImage from '../../images/demo.webp'
 
 const DemoSection = () => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import cartIcon from "../icons/cart.png"
+import cartIcon from "../../icons/cart.png"
 
 
 const Navbar = () => {

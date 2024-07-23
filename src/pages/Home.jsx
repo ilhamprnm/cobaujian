@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from '../components/Navbar.jsx';
-import Hero from '../components/Hero.jsx'
-import PaketSection from '../components/PaketSection.jsx'
-import TestimoniSection from '../components/TestimoniSection.jsx'
-import FAQSection from '../components/FAQSection.jsx'
-import DemoSection from '../components/DemoSection.jsx';
-import Footer from '../components/Footer.jsx'
-import Contacts from '../components/Contacts.jsx';
+import Navbar from '../components/Home/Navbar.jsx';
+import Hero from '../components/Home/Hero.jsx'
+import PaketSection from '../components/Home/PaketSection.jsx'
+import TestimoniSection from '../components/Home/TestimoniSection.jsx'
+import FAQSection from '../components/Home/FAQSection.jsx'
+import DemoSection from '../components/Home/DemoSection.jsx';
+import Footer from '../components/Home/Footer.jsx'
+import Contacts from '../components/Home/Contacts.jsx';
 
 const Home = () => {
   return (
