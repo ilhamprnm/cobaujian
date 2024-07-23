@@ -3,7 +3,7 @@ import heroImage from '../images/hero_image.webp'
 
 const Hero = () => {
   return (
-    <div className='p-24 py-28 px-4 md:px-24 flex gap-3 flex-col md:flex-row'>
+    <div className='p-24 py-28 px-4 md:px-24 flex gap-3 flex-col md:flex-row' id='hero-section'>
       <div className='w-4/5 md:w-1/2 md:order-last mx-auto'>
         <img className='w-full md:w-[486px]' src={heroImage} alt="hero-image" />
       </div>

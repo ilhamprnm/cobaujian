@@ -3,7 +3,7 @@ import profilePic from '../images/profile.jpg'
 
 const TestimoniSection = () => {
   return (
-    <div className=' p-2 py-24 md:p-24'>
+    <div className=' p-2 py-24 md:p-24' id='testimoni-section'>
       <div className='bg-gray-200 rounded-lg p-4 py-16'>
         <div className='flex flex-col justify-center items-center gap-2 mb-16 text-center'>
           <h2 className='font-bold text-3xl'>Alumni CobaUjian</h2>

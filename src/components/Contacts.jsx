@@ -59,13 +59,13 @@ const Contacts = () => {
         <img  className='h-7 duration-700' id='contacts-image' src={contacts} alt="contacts-icon" />
         <img className='h-7 absolute top-0 opacity-0 duration-700' id='close-icon' src={close} alt="close-icon" />
       </div>
-      <div className='absolute opacity-0 right-0 top-0 p-3 bg-green-500 rounded-full duration-500' id='whatsapp-contact'>
+      <div className='absolute opacity-0 right-0 top-0 p-3 bg-green-500 rounded-full duration-500 shadow-roundBlack' id='whatsapp-contact'>
         <img className='h-8' src={whatsappWhite} alt="whatsapp-icon" />
       </div>
-      <div className='absolute opacity-0 right-0 top-0 p-3 bg-gradient-to-r from-[#fcb045] via-[#fd1d1d] to-[#833ab4] rounded-full duration-500' id='instagram-contact'>
+      <div className='absolute opacity-0 right-0 top-0 p-3 bg-gradient-to-r from-[#fcb045] via-[#fd1d1d] to-[#833ab4] rounded-full duration-500 delay-300 shadow-roundBlack' id='instagram-contact'>
         <img className='h-8 w-8' src={instagramWhite} alt="instagram-icon" />
       </div>
-      <div className='absolute opacity-0 right-0 top-0 p-3 bg-black rounded-full duration-500' id='tiktok-contact'>
+      <div className='absolute opacity-0 right-0 top-0 p-3 bg-black rounded-full duration-500 delay-500 shadow-roundBlack' id='tiktok-contact'>
         <img className='h-8 bg-white p-0' src={tiktok} alt="tiktok-icon" />
       </div>
     </div>

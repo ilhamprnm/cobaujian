@@ -26,7 +26,7 @@ const FAQSection = () => {
   }
   
   return (
-    <div className='p-3'>
+    <div className='p-3' id='faq-section'>
       <div className='flex flex-col items-center gap-8 max-w-[620px] mx-auto'>
         <div>
           <h1 className='font-bold text-3xl max-w-[620px]'>FAQ</h1>

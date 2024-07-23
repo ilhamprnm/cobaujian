@@ -3,7 +3,7 @@ import demoImage from '../images/demo.webp'
 
 const DemoSection = () => {
   return (
-    <div className='py-24 px-3 md:px-24 flex flex-col md:flex-row gap-4'>
+    <div className='py-24 px-3 md:px-24 flex flex-col md:flex-row gap-4' id='demo-section'>
       <div>
         <img src={demoImage} alt="" />
       </div>
