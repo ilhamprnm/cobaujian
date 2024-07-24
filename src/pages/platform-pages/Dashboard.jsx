@@ -10,9 +10,22 @@ import Contacts from '../../components/Home/Contacts.jsx';
 import photoProfile from '../../images/profile.jpg'
 
 const Dashboard = () => {
+
+  function handleCart() {
+    const cartLayer = document.getElementById('cart-layer');
+    
+    cartLayer.style.transform = 'translateX(0)';
+  }
+
+  function handleClose() {
+    const cartLayer = document.getElementById('cart-layer');
+
+    cartLayer.style.transform = 'translateX(1000px)'
+  }
+
   return (
     <div className='flex'>
-      <div className='border max-w-64 w-full fixed top-0 bottom-0 left-0 px-2 shadow-xl bg-white hidden min-[625px]:block'>
+      <div className='border max-w-64 w-full fixed top-0 bottom-0 left-0 px-2 shadow-xl bg-white hidden min-[625px]:block z-10'>
         <div className='flex flex-col justify-between h-full'>
           <div>
             <div className='flex justify-center py-4 border-b-[1px]'>
@@ -31,7 +44,7 @@ const Dashboard = () => {
                 <img className='h-6' src={paymentImage} alt="payment-icon" />
                 <h2 className='font-semibold'>Pembayaran</h2>
               </div>
-              <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3'>
+              <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                 <img className='h-6' src={cartImage} alt="cart-icon" />
                 <h2 className='font-semibold'>Keranjang</h2>
               </div>
@@ -54,8 +67,8 @@ const Dashboard = () => {
         </div>
         
       </div>
-      <div className='bg-gray-100 w-full min-[625px]:p-11 p-4
-      '>
+      <div className='bg-gray-100 w-full min-[625px]:p-11 p-4 relative
+       overflow-hidden'>
         <div className='min-[625px]:ml-64'>
           <div >
             <h2 className='font-bold text-xl'>Produk Ujian</h2>
@@ -67,8 +80,89 @@ const Dashboard = () => {
             <Paket3 />
           </div>
         </div>
+
+        <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[1000]' id='cart-layer'>
+        <div className='flex flex-col gap-4 w-full'>
+          <div className='flex gap-4 items-center'>
+            <div className='flex-1'>
+              <h1 className='font-bold text-2xl'>Keranjang Belanja (4 Ujian)</h1>
+            </div>
+            <div className='h-8 w-8 flex items-center justify-center bg-gray-200 rounded-md p-5 cursor-pointer' onClick={handleClose}>
+              <p className='font-bold text-2xl'>X</p>
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <div className='flex flex-col md:flex-row border p-2 rounded-md'>
+              <div className='flex-1'>
+                <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
+                <p>Tryout prediksi seleksi LPDP 2024</p>
+              </div>
+              <div className='flex-1 flex justify-between items-center'>
+                <div className='flex gap-4'>
+                  <s className='text-gray-300'>Rp. 50.000</s>
+                  <p className='font-semibold'>Rp. 35.000</p>
+                </div>
+                <div>
+                  <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row border p-2 rounded-md'>
+              <div className='flex-1'>
+                <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
+                <p>Tryout prediksi seleksi LPDP 2024</p>
+              </div>
+              <div className='flex-1 flex justify-between items-center'>
+                <div className='flex gap-4'>
+                  <s className='text-gray-300'>Rp. 50.000</s>
+                  <p className='font-semibold'>Rp. 35.000</p>
+                </div>
+                <div>
+                  <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row border p-2 rounded-md'>
+              <div className='flex-1'>
+                <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
+                <p>Tryout prediksi seleksi LPDP 2024</p>
+              </div>
+              <div className='flex-1 flex justify-between items-center'>
+                <div className='flex gap-4'>
+                  <s className='text-gray-300'>Rp. 50.000</s>
+                  <p className='font-semibold'>Rp. 35.000</p>
+                </div>
+                <div>
+                  <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row border p-2 rounded-md'>
+              <div className='flex-1'>
+                <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
+                <p>Tryout prediksi seleksi LPDP 2024</p>
+              </div>
+              <div className='flex-1 flex justify-between items-center'>
+                <div className='flex gap-4'>
+                  <s className='text-gray-300'>Rp. 50.000</s>
+                  <p className='font-semibold'>Rp. 35.000</p>
+                </div>
+                <div>
+                  <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
       <Contacts />
+
+      
     </div>
   )
 }
