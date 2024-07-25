@@ -7,7 +7,6 @@ const Platform = () => {
   return (
     <Routes>
       <Route path='/' element={<Dashboard />}/>
-      
     </Routes>
   )
 }

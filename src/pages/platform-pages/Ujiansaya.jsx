@@ -72,10 +72,10 @@ const Dashboard = () => {
                 <img className='h-6' src={testImage} alt="test-icon" />
                 <h2 className='font-semibold'>Ujian Saya</h2>
               </a>
-              <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3'>
+              <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform/pembayaran'>
                 <img className='h-6' src={paymentImage} alt="payment-icon" />
                 <h2 className='font-semibold'>Pembayaran</h2>
-              </div>
+              </a>
               <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                 <img className='h-6' src={cartImage} alt="cart-icon" />
                 <h2 className='font-semibold'>Keranjang</h2>
@@ -417,10 +417,10 @@ const Dashboard = () => {
                   <img className='h-6' src={testImage} alt="test-icon" />
                   <h2 className='font-semibold'>Ujian Saya</h2>
                 </a>
-                <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3'>
+                <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform/pembayaran'>
                   <img className='h-6' src={paymentImage} alt="payment-icon" />
                   <h2 className='font-semibold'>Pembayaran</h2>
-                </div>
+                </a>
                 <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                   <img className='h-6' src={cartImage} alt="cart-icon" />
                   <h2 className='font-semibold'>Keranjang</h2>
