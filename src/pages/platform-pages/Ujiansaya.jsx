@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
@@ -9,8 +9,12 @@ import arrowDown from '../../icons/arrow-down.png'
 import menuIcon from '../../icons/menu.svg'
 import clockIcon from '../../icons/clock.png'
 import documentIcon from '../../icons/document.png'
+import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
+  const [questionState, dispatch] = useContext(QuestionContext);
+  console.log(questionState)
+
   const [opened, setOpened] = useState(false);
 
   function handleCart() {

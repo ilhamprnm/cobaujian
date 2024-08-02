@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import clock from '../../../icons/clock.png';
 import document from '../../../icons/document.png';
+import { QuestionContext } from '../../../data/questions';
 
 const paket1 = () => {
+  const [questionState, dispatch] = useContext(QuestionContext)
+
+  console.log(questionState)
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.

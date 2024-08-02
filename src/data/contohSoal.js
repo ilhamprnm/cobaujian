@@ -1,4 +1,4 @@
-const soal1 = [
+export const soal1 = [
   {
     No:1,
     Soal:"Hari lahir lancasila diperingati setiap tanggal?",
@@ -662,3 +662,16 @@ const soal1 = [
     Jawaban:"loyang : pemanggang : roti",
   },
 ]
+
+export const shuffleAnswers = (questions) => {
+  const unshuffledAnswers = [
+    questions.Jawaban,
+    ...questions.JawabanSalah,
+  ];
+
+  return unshuffledAnswers
+    .map((answer) => ({sort: Math.random(), value: answer}))
+    .sort((a, b) => a.sort - b.sort)
+    .map((obj) => obj.value)
+}
+

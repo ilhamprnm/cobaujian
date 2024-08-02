@@ -6,6 +6,7 @@ import Signup from "./pages/Signup.jsx";
 import Platform from "./pages/Platform.jsx";
 import Ujiansaya from './pages/platform-pages/Ujiansaya.jsx'
 import Pembayaran from './pages/platform-pages/Pembayaran.jsx'
+import Ujian1 from './pages/Ujian1.jsx'
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
         <Route path='/Platform//*' element={<Platform />} />
         <Route path='/platform/ujiansaya' element={<Ujiansaya />}/>
         <Route path='/platform/pembayaran' element={<Pembayaran />}/>
+        <Route path='/ujian1' element={<Ujian1 />} />
       </Routes>
     </Router>
   )
