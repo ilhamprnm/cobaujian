@@ -37,8 +37,8 @@ const Navbar = () => {
           </div>
           
         </div>
-        <div className='py-2 px-3 border border-green-700 rounded-lg font-semibold text-green-700 cursor-pointer'>
-          Dashboard
+        <div className='flex'>
+          <a className='py-2 px-3 border border-green-700 rounded-lg font-semibold text-green-700 cursor-pointer' href="/platform">Dashboard</a>
         </div>
       </div>
       <div className='absolute bg-white top-0 right-0 h-[100vh] border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700' id='cart-layer'>

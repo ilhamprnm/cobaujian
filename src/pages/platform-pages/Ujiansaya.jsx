@@ -154,8 +154,8 @@ const Dashboard = () => {
                   <div className='w-full'>
                     <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
                   </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
+                  <div className='w-full flex text-center'>
+                    <a className='bg-green-600/70 w-full py-1 rounded font-semibold' href='/ujian1'>Coba Lagi</a>
                   </div>
                 </div>
               </div>

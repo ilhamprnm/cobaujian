@@ -61,8 +61,8 @@ const paket1 = () => {
                 <p>Soal: 100 butir</p>
               </div>
             </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white'>Coba Ujian</button>
+            <div className='mt-2 flex text-center'>
+              <a className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white cursor-pointer' href='/ujian1'>Coba Ujian</a>
             </div>
           </div>
           <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
@@ -82,8 +82,8 @@ const paket1 = () => {
                 <p>Soal: 100 butir</p>
               </div>
             </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
+            <div className='mt-2 flex text-center'>
+              <a className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white' href='/ujian1'>Coba Ujian</a>
             </div>
           </div>
           <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>

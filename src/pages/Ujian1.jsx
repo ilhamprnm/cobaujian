@@ -55,7 +55,7 @@ const Ujian1 = () => {
               <div>
                 <h3 className='text-xl text-gray-500'>Soal {questionState.currentQuestionIndex + 1}</h3>
               </div>
-              <div className='bg-white rounded-md p-2 text-xl '>
+              <div className='bg-white rounded-md p-2 text-xl text-justify'>
                 <p>{currentQuestion.Soal}</p>
               </div>
               <div>
@@ -99,81 +99,81 @@ const Ujian1 = () => {
               <div className='pt-4'>
                 <p className='font-bold'>Nomor Soal</p>
               </div>
-              <div className='flex gap-2  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto justify-center'>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>1</p>
+              <div className='flex gap-2  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto'>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>1</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>2</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>2</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>3</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>3</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>4</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>4</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>5</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>5</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>6</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>6</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>7</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>7</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>8</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>8</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>9</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>9</p>
                 </div>
-                <div className='p-2 px-3 rounded bg-gray-200'>
-                  <p>10</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>10</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>1</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>11</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>2</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>12</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>3</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>13</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>4</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>14</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>5</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>15</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>6</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>16</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>7</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>17</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>8</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>18</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>9</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>19</p>
                 </div>
-                <div className='p-2 px-3 rounded bg-gray-200'>
-                  <p>10</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>20</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>1</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>21</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>2</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>22</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>3</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>23</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>4</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>24</p>
                 </div>
-                <div className='p-2 px-4 rounded bg-gray-200'>
-                  <p>5</p>
+                <div className='p-2 flex text-center rounded bg-gray-200'>
+                  <p className='w-6'>25</p>
                 </div>
               </div>
               <div className='pb-5 px-3'>
@@ -181,8 +181,8 @@ const Ujian1 = () => {
               </div>
             </div>
           </div>
-          <div>
-            <button className='w-full bg-gray-400 text-white p-2 rounded-md font-semibold'>Selesai</button>
+          <div className='flex text-center'>
+            <a className='w-full bg-gray-400 text-white p-2 rounded-md font-semibold' href='/platform'>Selesai</a>
           </div>
         </div>
       </div>
