@@ -7,10 +7,29 @@ const initialState = {
   showResults: false,
   correctAnswerCount : 0,
   answers: shuffleAnswers(soal1[0]),
+  currentAnswer: '',
 };
 
 const reducer = (state, action) => {
+  console.log( state, action)
   switch (action.type) {
+    case "SELECT_ANSWER": {
+      const newSoal1 = state.soal1.map((question, index) => {
+        if (index === state.currentQuestionIndex) {
+          return {
+            ...question,
+            currentAnswer: action.payload,
+          };
+        }
+        return question;
+      })
+    
+      return {
+        ...state, 
+        soal1: newSoal1
+      }
+      
+    }
     case "NEXT_QUESTION": {
       const showResults = state.currentQuestionIndex === state.soal1.length - 1;
       const currentQuestionIndex = showResults 
@@ -51,6 +70,8 @@ export const QuestionContext = createContext();
 
 export const QuestionProvider = ({children}) => {
   const value = useReducer(reducer, initialState)
+
+  
 
   return <QuestionContext.Provider value={value}>{children}</QuestionContext.Provider>
 }

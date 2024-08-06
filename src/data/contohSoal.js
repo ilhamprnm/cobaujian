@@ -9,6 +9,7 @@ export const soal1 = [
       "25 maret"
     ],
     Jawaban:"1 juni",
+    currentAnswer:'',
   }, 
   {
     No:2,
@@ -20,6 +21,7 @@ export const soal1 = [
       "Dr Radjiman"
     ],
     Jawaban:"Prof Notonegoro",
+    currentAnswer:'',
   },
   {
     No:3,
@@ -31,6 +33,7 @@ export const soal1 = [
       "padi dan kapas"
     ],
     Jawaban:"rantai emas",
+    currentAnswer:'',
   },
   {
     No:4,
@@ -42,6 +45,7 @@ export const soal1 = [
       "idealisme"
     ],
     Jawaban:"fleksibilitas",
+    currentAnswer:'',
   },
   {
     No:5,
@@ -53,6 +57,7 @@ export const soal1 = [
       "pemerintah belanda"
     ],
     Jawaban:"bpupki",
+    currentAnswer:'',
   },
   {
     No:6,
@@ -64,6 +69,7 @@ export const soal1 = [
       "UU No 25 tahun 2005"
     ],
     Jawaban:"UU No 24 tahun 2003",
+    currentAnswer:'',
   },
   {
     No:7,
@@ -75,6 +81,7 @@ export const soal1 = [
       "kebijakan ekonomi indonesia"
     ],
     Jawaban:"tata cara pemilihan presiden dan wakil presiden, serta pemakzulan presiden",
+    currentAnswer:'',
   },
   {
     No:8,
@@ -86,6 +93,7 @@ export const soal1 = [
       "22 tahun 1999"
     ],
     Jawaban:"28 tahun 1999",
+    currentAnswer:'',
   },
   {
     No:9,
@@ -97,6 +105,7 @@ export const soal1 = [
       "landas kontinen"
     ],
     Jawaban:"laut teritorial",
+    currentAnswer:'',
   },
   {
     No:10,
@@ -108,6 +117,7 @@ export const soal1 = [
       "1 maret 1945"
     ],
     Jawaban:"3 oktober 1943",
+    currentAnswer:'',
   },
   {
     No:11,
@@ -119,6 +129,7 @@ export const soal1 = [
       "UNESCO"
     ],
     Jawaban:"UNCI",
+    currentAnswer:'',
   }, 
   {
     No:12,
@@ -130,6 +141,7 @@ export const soal1 = [
       "memajukan kerjasama regional"
     ],
     Jawaban:"melaksanakan ketertiban dunia",
+    currentAnswer:'',
   },
   {
     No:13,
@@ -141,6 +153,7 @@ export const soal1 = [
       "Sulawesi Utara"
     ],
     Jawaban:"Sulawesi Selatan",
+    currentAnswer:'',
   },
   {
     No:14,
@@ -152,6 +165,7 @@ export const soal1 = [
       "belgia"
     ],
     Jawaban:"austria",
+    currentAnswer:'',
   },
   {
     No:15,
@@ -163,6 +177,7 @@ export const soal1 = [
       "sungai kampar"
     ],
     Jawaban:"sungai kapuas",
+    currentAnswer:'',
   },
   {
     No:16,
@@ -174,6 +189,7 @@ export const soal1 = [
       "PP No 70 tahun 1951"
     ],
     Jawaban:"PP No 66 tahun 1951",
+    currentAnswer:'',
   },
   {
     No:17,
@@ -185,6 +201,7 @@ export const soal1 = [
       "9 agustus 1945"
     ],
     Jawaban:"11 februari 1950",
+    currentAnswer:'',
   },
   {
     No:18,
@@ -196,6 +213,7 @@ export const soal1 = [
       "jiwa bangsa"
     ],
     Jawaban:"cita-cita dan tujuan bangsa",
+    currentAnswer:'',
   },
   {
     No:19,
@@ -207,6 +225,7 @@ export const soal1 = [
       "keadilan sosial yang merata bagi seluruh rakyat indonesia"
     ],
     Jawaban:"pancasila memberikan panduan hidup bermasyarakat, bernegara, bahkan beragama yang baik",
+    currentAnswer:'',
   },
   {
     No:20,
@@ -218,6 +237,7 @@ export const soal1 = [
       "presidensial"
     ],
     Jawaban:"republik",
+    currentAnswer:'',
   },
   {
     No:21,
@@ -229,6 +249,7 @@ export const soal1 = [
       "bab II pasal 2 ayat (2)"
     ],
     Jawaban:"bab IV pasal 16 ayat (2)",
+    currentAnswer:'',
   }, 
   {
     No:22,
@@ -240,6 +261,7 @@ export const soal1 = [
       "29 mei 1945"
     ],
     Jawaban:"22 juni 1945",
+    currentAnswer:'',
   },
   {
     No:23,
@@ -251,6 +273,7 @@ export const soal1 = [
       "berjuang menentang setiap bentuk penjajahan dan mendukung kemerdekaan setiap bangsa"
     ],
     Jawaban:"pengukuhan atas proklamasi kemerdekaan",
+    currentAnswer:'',
   },
   {
     No:24,
@@ -262,6 +285,7 @@ export const soal1 = [
       "teori hukum alam"
     ],
     Jawaban:"teori kedaulatan",
+    currentAnswer:'',
   },
   {
     No:25,
@@ -273,6 +297,7 @@ export const soal1 = [
       "perang tapanuli"
     ],
     Jawaban:"perang paderi",
+    currentAnswer:'',
   },
   {
     No:26,
@@ -284,6 +309,7 @@ export const soal1 = [
       "TNI harus hijarah ke RI"
     ],
     Jawaban:"Belanda hanya mengakui Jawa sebagai wilayah RI",
+    currentAnswer:'',
   },
   {
     No:27,
@@ -295,6 +321,7 @@ export const soal1 = [
       "Jawa saja"
     ],
     Jawaban:"sumatra, jawa, dan madura",
+    currentAnswer:'',
   },
   {
     No:28,
@@ -306,6 +333,7 @@ export const soal1 = [
       "jawa timur"
     ],
     Jawaban:"sulawesi utara",
+    currentAnswer:'',
   },
   {
     No:29,
@@ -317,6 +345,7 @@ export const soal1 = [
       "pasal 26 ayat (1)"
     ],
     Jawaban:"pasal 29 ayat (1)",
+    currentAnswer:'',
   },
   {
     No:30,
@@ -328,6 +357,7 @@ export const soal1 = [
       "repudiasi"
     ],
     Jawaban:"ius sanguinis",
+    currentAnswer:'',
   },
   {
     No:31,
@@ -339,6 +369,7 @@ export const soal1 = [
       "rendah"
     ],
     Jawaban:"tengah",
+    currentAnswer:'',
   }, 
   {
     No:32,
@@ -350,6 +381,7 @@ export const soal1 = [
       "perang"
     ],
     Jawaban:"kepala",
+    currentAnswer:'',
   },
   {
     No:33,
@@ -361,6 +393,7 @@ export const soal1 = [
       "tema"
     ],
     Jawaban:"kejadian",
+    currentAnswer:'',
   },
   {
     No:34,
@@ -372,6 +405,7 @@ export const soal1 = [
       "baik"
     ],
     Jawaban:"penting",
+    currentAnswer:'',
   },
   {
     No:35,
@@ -383,6 +417,7 @@ export const soal1 = [
       "diam"
     ],
     Jawaban:"semangat",
+    currentAnswer:'',
   },
   {
     No:36,
@@ -394,6 +429,7 @@ export const soal1 = [
       "aturan"
     ],
     Jawaban:"terlibat",
+    currentAnswer:'',
   },
   {
     No:37,
@@ -405,6 +441,7 @@ export const soal1 = [
       "tujuan"
     ],
     Jawaban:"11 februari 1950",
+    currentAnswer:'',
   },
   {
     No:38,
@@ -416,6 +453,7 @@ export const soal1 = [
       "kemampuan"
     ],
     Jawaban:"variasi",
+    currentAnswer:'',
   },
   {
     No:39,
@@ -427,6 +465,7 @@ export const soal1 = [
       "membuang"
     ],
     Jawaban:"menolak",
+    currentAnswer:'',
   },
   {
     No:40,
@@ -438,6 +477,7 @@ export const soal1 = [
       "kecil"
     ],
     Jawaban:"rumbai",
+    currentAnswer:'',
   },
 
   {
@@ -450,6 +490,7 @@ export const soal1 = [
       "terbatas"
     ],
     Jawaban:"terhalang",
+    currentAnswer:'',
   }, 
   {
     No:42,
@@ -461,6 +502,7 @@ export const soal1 = [
       "lelah"
     ],
     Jawaban:"kuat",
+    currentAnswer:'',
   },
   {
     No:43,
@@ -472,6 +514,7 @@ export const soal1 = [
       "herbal"
     ],
     Jawaban:"nabati",
+    currentAnswer:'',
   },
   {
     No:44,
@@ -483,6 +526,7 @@ export const soal1 = [
       "lemah"
     ],
     Jawaban:"dungu",
+    currentAnswer:'',
   },
   {
     No:45,
@@ -494,6 +538,7 @@ export const soal1 = [
       "lunas"
     ],
     Jawaban:"hutang",
+    currentAnswer:'',
   },
   {
     No:46,
@@ -505,6 +550,7 @@ export const soal1 = [
       "jahit"
     ],
     Jawaban:"konkaf",
+    currentAnswer:'',
   },
   {
     No:47,
@@ -516,6 +562,7 @@ export const soal1 = [
       "pembelian"
     ],
     Jawaban:"pemasukan",
+    currentAnswer:'',
   },
   {
     No:48,
@@ -527,6 +574,7 @@ export const soal1 = [
       "aman"
     ],
     Jawaban:"stabil",
+    currentAnswer:'',
   },
   {
     No:49,
@@ -538,6 +586,7 @@ export const soal1 = [
       "pikir"
     ],
     Jawaban:"mental",
+    currentAnswer:'',
   },
   {
     No:50,
@@ -549,6 +598,7 @@ export const soal1 = [
       "kenyang"
     ],
     Jawaban:"lapar",
+    currentAnswer:'',
   },
 
   {
@@ -561,6 +611,7 @@ export const soal1 = [
       "gergaji"
     ],
     Jawaban:"cendana",
+    currentAnswer:'',
   }, 
   {
     No:52,
@@ -572,6 +623,7 @@ export const soal1 = [
       "ikat pinggang"
     ],
     Jawaban:"gelang",
+    currentAnswer:'',
   },
   {
     No:53,
@@ -583,6 +635,7 @@ export const soal1 = [
       "buas"
     ],
     Jawaban:"hutan",
+    currentAnswer:'',
   },
   {
     No:54,
@@ -594,6 +647,7 @@ export const soal1 = [
       "jelek"
     ],
     Jawaban:"lemak",
+    currentAnswer:'',
   },
   {
     No:55,
@@ -605,6 +659,7 @@ export const soal1 = [
       "dosa"
     ],
     Jawaban:"dunia",
+    currentAnswer:'',
   },
   {
     No:56,
@@ -616,6 +671,7 @@ export const soal1 = [
       "dosa"
     ],
     Jawaban:"cicil",
+    currentAnswer:'',
   },
   {
     No:57,
@@ -627,6 +683,7 @@ export const soal1 = [
       "belajar"
     ],
     Jawaban:"kapur",
+    currentAnswer:'',
   },
   {
     No:58,
@@ -638,6 +695,7 @@ export const soal1 = [
       "joule"
     ],
     Jawaban:"kilogram",
+    currentAnswer:'',
   },
   {
     No:59,
@@ -649,6 +707,7 @@ export const soal1 = [
       "salon"
     ],
     Jawaban:"butik",
+    currentAnswer:'',
   },
   {
     No:60,
@@ -660,7 +719,12 @@ export const soal1 = [
       "helm : topi : sepatu"
     ],
     Jawaban:"loyang : pemanggang : roti",
+    currentAnswer:'',
   },
+]
+
+export const jawaban1 = [
+
 ]
 
 export const shuffleAnswers = (questions) => {

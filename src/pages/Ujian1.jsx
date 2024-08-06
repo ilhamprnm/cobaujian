@@ -10,8 +10,9 @@ import Answer from '../components/Answer.jsx'
 const Ujian1 = () => {
 
   const [questionState, dispatch] = useContext(QuestionContext);
-  
 
+  
+  console.log(questionState)
   const currentQuestion = questionState.soal1[questionState.currentQuestionIndex];
   
 
@@ -63,7 +64,12 @@ const Ujian1 = () => {
               </div>
               <div className='flex flex-col gap-4'>
                 {questionState.answers.map((answer, index)  => (
-                  <Answer answerText={answer} key={index} index={index}/>
+                  <Answer 
+                    answerText={answer} 
+                    key={index} 
+                    index={index}
+                    onClick={() => dispatch({type: "SELECT_ANSWER", payload: answer})}
+                    />
                 ))}
                 
               </div>
