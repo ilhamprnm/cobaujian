@@ -13,6 +13,31 @@ const initialState = {
 const reducer = (state, action) => {
   console.log( state, action)
   switch (action.type) {
+    case "DELETE_ANSWER": {
+      const newSoal1 = state.soal1.map((question, index) => {
+        if (index === state.currentQuestionIndex) {
+          return {
+            ...question,
+            currentAnswer: '',
+          }
+        }
+        return question;
+      })
+      return {
+       ...state,
+       soal1: newSoal1
+
+      }
+    }
+    case "SELECT_NUMBER": {
+      const currentQuestionIndex = action.payload - 1;
+      const answers = shuffleAnswers(state.soal1[currentQuestionIndex])
+      return {
+        ...state,
+        currentQuestionIndex,
+        answers
+      }
+    }
     case "SELECT_ANSWER": {
       const newSoal1 = state.soal1.map((question, index) => {
         if (index === state.currentQuestionIndex) {

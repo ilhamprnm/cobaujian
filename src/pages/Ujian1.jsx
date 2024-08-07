@@ -1,10 +1,10 @@
 import React, {useEffect, useContext} from 'react'
 import keteranganUjian from '../images/keterangan-ujian.svg'
-import flagIcon from '../icons/flag.png'
 import nextIcon from '../icons/next.png'
 import backIcon from '../icons/back.png'
 import {QuestionContext} from '../data/questions.jsx'
 import Answer from '../components/Answer.jsx'
+import QuestionNumber from '../components/QuestionNumber.jsx'
 
 
 const Ujian1 = () => {
@@ -73,8 +73,10 @@ const Ujian1 = () => {
                 ))}
                 
               </div>
-              <div className='flex justify-end font-semibold text-gray-500'>
-                <p>Hapus Pilihan</p>
+              <div className='flex justify-end font-semibold text-gray-500 cursor-pointer'>
+                <div onClick={() => dispatch({type: 'DELETE_ANSWER'})}>
+                  <p>Hapus Pilihan</p>
+                </div>
               </div>
             </div>
           </div>
@@ -86,9 +88,15 @@ const Ujian1 = () => {
               </button>
             </div>
             <div>
-              <button className='px-8 py-2 rounded-full bg-orange-400 flex gap-3 items-center'>
-                <img className='h-5' src={flagIcon} alt="flagIcon" />
-                <p className='font-bold text-white'>Ragu</p>
+              <button 
+              className='px-8 py-2 rounded-full border border-orange-400 text-orange-400 flex gap-3 items-center' 
+              onClick={() => {dispatch({type: "SELECT_ANSWER", payload:"ragu"})}}
+              style={{
+                color: questionState.soal1[questionState.currentQuestionIndex].currentAnswer === 'ragu' ? 'white' : '#f6993f',
+                backgroundColor: questionState.soal1[questionState.currentQuestionIndex].currentAnswer === 'ragu' ? '#f6993f' : 'white'
+               }}
+              >
+                <p className='font-bold'>! Ragu</p>
               </button>
             </div>
             <div>
@@ -99,88 +107,21 @@ const Ujian1 = () => {
             </div>
           </div>
         </div>
-        <div className=' min-[1000px]:max-w-[290px] w-full order-1 min-[1000px]:order-2 overflow-hidden p-1 flex flex-col gap-3'>
+        <div className=' min-[1000px]:max-w-[300px] w-full order-1 min-[1000px]:order-2 overflow-hidden p-1 flex flex-col gap-3'>
           <div className='border-2 border-black rounded-md'>
             <div className='flex flex-col items-center gap-3'>
               <div className='pt-4'>
                 <p className='font-bold'>Nomor Soal</p>
               </div>
-              <div className='flex gap-2  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto'>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>1</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>2</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>3</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>4</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>5</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>6</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>7</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>8</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>9</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>10</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>11</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>12</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>13</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>14</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>15</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>16</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>17</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>18</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>19</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>20</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>21</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>22</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>23</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>24</p>
-                </div>
-                <div className='p-2 flex text-center rounded bg-gray-200'>
-                  <p className='w-6'>25</p>
-                </div>
+              <div className='flex gap-2  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto max-h-64'>
+                {questionState.soal1.map((soal) => (
+                  <QuestionNumber 
+                    soal={soal}
+                    key={soal.No}
+                    onClick={() => dispatch({type: "SELECT_NUMBER", payload: soal.No})}
+                  />
+                ))}
+                
               </div>
               <div className='pb-5 px-3'>
                   <img src={keteranganUjian} alt="keterangan-ujian" />
