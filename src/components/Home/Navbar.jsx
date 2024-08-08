@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <div className='w-full shadow-lg flex justify-between p-4 md:px-24 fixed gap-2 bg-white duration-500 z-[10000]'>
       <div className='flex items-center' >
-        <p className='font-semibold'>CobaUjian.com</p>
+        <p className='font-semibold'>Ujianlah.com</p>
       </div>
       <div className='hidden md:block '>
         <ul className=' flex h-full items-center gap-2 lg:gap-9 font-semibold '>

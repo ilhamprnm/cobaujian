@@ -42,7 +42,7 @@ const Dashboard = () => {
         <div className='flex flex-col justify-between h-full'>
           <div>
             <div className='flex justify-center py-4 border-b-[1px]'>
-              <h1 className='font-bold'>CobaUjian</h1>
+              <h1 className='font-bold'>Ujianlah</h1>
             </div>
             <div>
               <a className='p-2 px-4 mt-3 rounded-md bg-green-500/30 hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform'>
@@ -74,7 +74,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className='text-center text-gray-600 text-[12px]'>
-              &#9400; 2023 cobaujian.com
+              &#9400; 2023 Ujianlah.com
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className='text-center text-gray-600 text-[12px]'>
-                &#9400; 2023 cobaujian.com
+                &#9400; 2023 Ujianlah.com
               </div>
             </div>
           </div>
