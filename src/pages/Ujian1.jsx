@@ -5,6 +5,7 @@ import backIcon from '../icons/back.png'
 import {QuestionContext} from '../data/questions.jsx'
 import Answer from '../components/Answer.jsx'
 import QuestionNumber from '../components/QuestionNumber.jsx'
+import TimeCounter from '../components/TimeCounter.jsx'
 
 
 const Ujian1 = () => {
@@ -46,7 +47,7 @@ const Ujian1 = () => {
           <p className='font-semibold text-xl'>Questions {questionState.currentQuestionIndex + 1}/{questionState.soal1.length}</p>
         </div>
         <div>
-          Counter
+          <TimeCounter />
         </div>
       </div>
       <div className='p-6 min-[1000px]:px-28 flex flex-col min-[1000px]:flex-row gap-4' id='question'>
