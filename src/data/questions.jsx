@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 import {soal1, shuffleAnswers} from './contohSoal.js'
+import BankSoal from './BankSoal.js'
 
 const initialState = {
   soal1,
@@ -95,8 +96,9 @@ export const QuestionContext = createContext();
 
 export const QuestionProvider = ({children}) => {
   const value = useReducer(reducer, initialState)
+  const bankSoal = BankSoal;
 
   
 
-  return <QuestionContext.Provider value={value}>{children}</QuestionContext.Provider>
+  return <QuestionContext.Provider value={{value, bankSoal}}>{children}</QuestionContext.Provider>
 }
