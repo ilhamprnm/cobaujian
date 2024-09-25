@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import { QuestionContext } from '../data/questions';
 
 const Answer = ({answerText, index, onClick}) => {
-  const [questionState, dispatch] = useContext(QuestionContext);
+  const [questionState, dispatch] = useContext(QuestionContext).value;
   const letterMapping = ["A", "B", "C", "D", "E"];
   return (
     <div 

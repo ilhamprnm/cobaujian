@@ -4,15 +4,18 @@ import 'react-multi-carousel/lib/styles.css';
 import clock from '../../../icons/clock.png';
 import document from '../../../icons/document.png';
 import { QuestionContext } from '../../../data/questions';
+import { Link } from 'react-router-dom';
 
 const paket1 = () => {
-  const [questionState, dispatch] = useContext(QuestionContext)
+  const [questionState, dispatch] = useContext(QuestionContext).value
+  const bankSoal = useContext(QuestionContext).bankSoal;
+  const bankSoalCPNS = bankSoal.LPDP;
 
   console.log(questionState)
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
+      
       breakpoint: { max: 4000, min: 3000 },
       items: 4.5
     },
@@ -44,174 +47,34 @@ const paket1 = () => {
           <h1 className='font-bold text-xl'>LPDP</h1>
         </div>
         <Carousel responsive={responsive} >
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
+          {bankSoalCPNS.map((ujian) => {
+
+            return <div key={ujian.ujianId} className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
             <div>
               <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
             </div>
             <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #1</h1>
+              <h1 className='font-bold text-xl leading-6'>{ujian.Title}</h1>
             </div>
             <div>
               <div className='flex items-center gap-3 mb-1'>
                 <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
+                <p>Waktu : {ujian.waktu / 60000} menit</p>
               </div>
               <div className='flex items-center gap-3'>
                 <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
+                <p>Soal : {ujian.Soal.length} soal</p>
               </div>
             </div>
             <div className='mt-2 flex text-center'>
-              <a className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white cursor-pointer' href='/ujian1'>Coba Ujian</a>
+              <Link to={`/ujian/${ujian.ujianId}`} className='flex w-full'>
+                <button className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white cursor-pointer'>Coba Ujian</button>
+              </Link>
             </div>
           </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #2</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2 flex text-center'>
-              <a className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white' href='/ujian1'>Coba Ujian</a>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #3</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #4</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #5</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #6</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #7</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-orange-400 py-1 px-3 rounded-md text-white font-bold'>LPDP</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout LPDP SKOLASTIK 2024 #8</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
+          
+          })}
+          
         </Carousel> 
       </div>
   )

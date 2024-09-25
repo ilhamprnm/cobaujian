@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import clock from '../../../icons/clock.png';
 import document from '../../../icons/document.png';
+import { QuestionContext } from '../../../data/questions';
+import { Link } from 'react-router-dom';
 
 const paket1 = () => {
+  const bankSoal = useContext(QuestionContext).bankSoal;
+  const bankSoalCPNS = bankSoal.CPNS;
+
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
+      
       breakpoint: { max: 4000, min: 3000 },
       items: 4.5
     },
@@ -39,174 +44,33 @@ const paket1 = () => {
           <h1 className='font-bold text-xl'>CPNS</h1>
         </div>
         <Carousel responsive={responsive} >
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
+          {bankSoalCPNS.map((ujian) => {
+            return <div key={ujian.ujianId} className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
             <div>
               <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
             </div>
             <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #1</h1>
+              <h1 className='font-bold text-xl leading-6'>{ujian.Title}</h1>
             </div>
             <div>
               <div className='flex items-center gap-3 mb-1'>
                 <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
+                <p>Waktu : {ujian.waktu / 60000} menit</p>
               </div>
               <div className='flex items-center gap-3'>
                 <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
+                <p>Soal : {ujian.Soal.length} soal</p>
               </div>
             </div>
             <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
+              <Link to={`/ujian/${ujian.ujianId}`}>
+                <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
+              </Link>
             </div>
           </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #2</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #3</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #4</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #5</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #6</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #7</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
-          <div className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
-            <div>
-              <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-            </div>
-            <div>
-              <h1 className='font-bold text-xl leading-6'>Tryout CPNS SKOLASTIK 2024 #8</h1>
-            </div>
-            <div>
-              <div className='flex items-center gap-3 mb-1'>
-                <img className='h-4 inlin' src={clock} alt="" />
-                <p>Waktu: 2 jam 15 menit</p>
-              </div>
-              <div className='flex items-center gap-3'>
-                <img className='h-4' src={document} alt="" />
-                <p>Soal: 100 butir</p>
-              </div>
-            </div>
-            <div className='mt-2'>
-              <button className='w-full bg-green-600 hover:bg-green-700 duration-500 p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-            </div>
-          </div>
+          })}
+          
+          
         </Carousel> 
       </div>
   )

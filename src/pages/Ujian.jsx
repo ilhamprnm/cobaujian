@@ -10,7 +10,7 @@ import TimeCounter from '../components/TimeCounter.jsx'
 
 const Ujian1 = () => {
 
-  const [questionState, dispatch] = useContext(QuestionContext);
+  const [questionState, dispatch] = useContext(QuestionContext).value;
 
   
   console.log(questionState)
