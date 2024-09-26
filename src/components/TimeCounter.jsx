@@ -8,9 +8,7 @@ const TimeCounter = ({time}) => {
   
   let interval = useRef();
 
-  const timerCount = time.waktu;
-
-  const countdownDate = new Date().getTime() + 60000;
+  const countdownDate = new Date().getTime() + 600000;
   
   
   
@@ -25,7 +23,6 @@ const TimeCounter = ({time}) => {
       const minutes = Math.floor((distance % (1000 * 60 * 60 )) / (1000 * 60)).toString().padStart(2, '0');
       const seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
-      console.log(distance)
       if (distance < 0 ) {
         //timerStop
         clearInterval(interval.current);
