@@ -1,6 +1,7 @@
 import React from 'react'
 
 const QuestionNumber = ({soal, onClick}) => {
+  
   return (
     <div 
     className='p-2 flex text-center rounded bg-gray-200 cursor-pointer' 
@@ -14,7 +15,7 @@ const QuestionNumber = ({soal, onClick}) => {
     }}
     onClick={onClick}
     >
-      <p className='w-6'>{soal.No}</p>
+      <p className='w-6'>{soal.no}</p>
     </div>
   )
 }

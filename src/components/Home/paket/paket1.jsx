@@ -11,7 +11,7 @@ const paket1 = () => {
   const bankSoal = useContext(QuestionContext).bankSoal;
   const bankSoalCPNS = bankSoal.LPDP;
 
-  console.log(questionState)
+
 
   const responsive = {
     superLargeDesktop: {

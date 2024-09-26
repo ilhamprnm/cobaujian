@@ -158,7 +158,7 @@ const BankSoal = {
         }, 
         {
           no:12,
-          pertanyaan:"tujuan negara republik indonesia yang berkaitan dengan duni internasional adalah?",
+          pertanyaan:"tujuan negara republik indonesia yang berkaitan dengan dunia internasional adalah?",
           opsiJawaban: [
             "mencerdaskan kehidupan bangsa", 
             "memajukan kesejahteraan umum",

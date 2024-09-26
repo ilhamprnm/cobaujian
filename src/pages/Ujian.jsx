@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react'
+import React, {useEffect, useContext, useState} from 'react'
 import keteranganUjian from '../images/keterangan-ujian.svg'
 import nextIcon from '../icons/next.png'
 import backIcon from '../icons/back.png'
@@ -6,16 +6,67 @@ import {QuestionContext} from '../data/questions.jsx'
 import Answer from '../components/Answer.jsx'
 import QuestionNumber from '../components/QuestionNumber.jsx'
 import TimeCounter from '../components/TimeCounter.jsx'
+import { useParams } from 'react-router-dom'
 
 
 const Ujian1 = () => {
 
   const [questionState, dispatch] = useContext(QuestionContext).value;
+  
+  const [ujian, setUjian] = useState({
+    Title:'',
+    ujianId:'',
+    waktu:0,
+    Soal:[],
+
+  })
+  const [questionIndex, setQuestionIndex] = useState(0)
+  const bankSoal = useContext(QuestionContext).bankSoal;
+  const {ujianId} = useParams();
+
+  const handleNext = () => {
+    if (questionIndex < ujian.Soal.length - 1) {
+      setQuestionIndex(e => 
+        e + 1
+      )
+    }
+  }
+
+  const handlePrev = () => {
+    if (questionIndex > 0) {
+      setQuestionIndex(e => 
+        e - 1
+      )
+    }
+  }
+
+  const handleSelectAnswer = () => {
+
+  }
 
   
-  console.log(questionState)
-  const currentQuestion = questionState.soal1[questionState.currentQuestionIndex];
+
+  useEffect(() => {
+    const findUjian = () => {
+      for (let key in bankSoal) {
+        bankSoal[key].map((ujian) => {
+          if (ujian.ujianId === ujianId) {
+            setUjian(e => ({
+              ...e,
+              Title: ujian.Title,
+              ujianId: ujian.ujianId,
+              waktu: ujian.waktu,
+              Soal: ujian.Soal
+            }))
+            
+          }
+        })
+      }
+    };
+    findUjian();
+  }, [ujianId, bankSoal])
   
+  const currentQuestion = ujian.Soal[questionIndex];
 
   useEffect(() => {
     function adjustHeroMargin() {
@@ -37,17 +88,17 @@ const Ujian1 = () => {
     };
   }, []);
 
-  return (
+  return ( 
     <div className=''>
       <div className='flex flex-col md:flex-row justify-between items-center gap-3 border py-5 px-2 md:px-28 fixed top-0 left-0 right-0 bg-white' id='navbar'>
         <div>
-          <p className='font-bold text-xl min-[460px]:text-3xl'>Paket 1 - Diagram Reasoning</p>
+          <p className='font-bold text-xl min-[460px]:text-3xl'>{ujian.Title}</p>
         </div>
         <div>
-          <p className='font-semibold text-xl'>Questions {questionState.currentQuestionIndex + 1}/{questionState.soal1.length}</p>
+          <p className='font-semibold text-xl'>Question {questionIndex + 1} / {ujian.Soal.length}</p>
         </div>
         <div>
-          <TimeCounter />
+          <TimeCounter time={ujian}/>
         </div>
       </div>
       <div className='p-6 min-[1000px]:px-28 flex flex-col min-[1000px]:flex-row gap-4' id='question'>
@@ -55,27 +106,52 @@ const Ujian1 = () => {
           <div className='border py-7 px-12 bg-[#e5efee] w-full rounded-md '>
             <div className='flex flex-col gap-3'>
               <div>
-                <h3 className='text-xl text-gray-500'>Soal {questionState.currentQuestionIndex + 1}</h3>
+                <h3 className='text-xl text-gray-500'>Soal {questionIndex + 1}</h3>
               </div>
               <div className='bg-white rounded-md p-2 text-xl text-justify'>
-                <p>{currentQuestion.Soal}</p>
+                <p>{currentQuestion && currentQuestion.pertanyaan ? currentQuestion.pertanyaan : ''}
+              </p>
               </div>
               <div>
                 <div className='border-2 border-black'></div>
               </div>
               <div className='flex flex-col gap-4'>
-                {questionState.answers.map((answer, index)  => (
+                {currentQuestion?.opsiJawaban?.map((answer, index)  => (
                   <Answer 
+                    currentQuestion={currentQuestion}
                     answerText={answer} 
                     key={index} 
                     index={index}
-                    onClick={() => dispatch({type: "SELECT_ANSWER", payload: answer})}
+                    onClick={() => {
+                      // dispatch({type: "SELECT_ANSWER", payload: answer});
+                      setUjian(prevUjian => {
+                        const updatedSoal = [...prevUjian.Soal];
+                        updatedSoal[questionIndex].currentAnswer = answer;
+                        
+                        return {
+                          ...prevUjian,
+                          Soal:updatedSoal
+                        }
+                      })
+                      
+                    }}
                     />
                 ))}
                 
               </div>
               <div className='flex justify-end font-semibold text-gray-500 cursor-pointer'>
-                <div onClick={() => dispatch({type: 'DELETE_ANSWER'})}>
+                <div onClick={() => {
+                    // dispatch({type: 'DELETE_ANSWER'});
+                    setUjian(prevUjian => {
+                      const updatedSoal = [...prevUjian.Soal];
+                      updatedSoal[questionIndex].currentAnswer = '';
+                      
+                      return {
+                        ...prevUjian,
+                        Soal:updatedSoal
+                      }
+                    })
+                  }}>
                   <p>Hapus Pilihan</p>
                 </div>
               </div>
@@ -83,7 +159,11 @@ const Ujian1 = () => {
           </div>
           <div className='flex justify-end gap-4 flex-wrap'>
             <div>
-              <button className='px-8 py-2 rounded-full bg-slate-400 flex gap-3 items-center' onClick={() => dispatch({type: "PREVIOUS_QUESTION"})}>
+              <button className='px-8 py-2 rounded-full bg-slate-400 flex gap-3 items-center' 
+              onClick={() => {
+                dispatch({type: "PREVIOUS_QUESTION"});
+                handlePrev()
+                }}>
                 <img className='h-5' src={backIcon} alt="backIcon" />
                 <p className='font-bold text-white'>Kembali</p>
               </button>
@@ -91,17 +171,32 @@ const Ujian1 = () => {
             <div>
               <button 
               className='px-8 py-2 rounded-full border border-orange-400 text-orange-400 flex gap-3 items-center' 
-              onClick={() => {dispatch({type: "SELECT_ANSWER", payload:"ragu"})}}
+              onClick={() => {
+                // dispatch({type: "SELECT_ANSWER", payload:"ragu"});
+                setUjian(prevUjian => {
+                  const updatedSoal = [...prevUjian.Soal];
+                  updatedSoal[questionIndex].currentAnswer = 'ragu';
+                  
+                  return {
+                    ...prevUjian,
+                    Soal:updatedSoal
+                  }
+                })
+              }}
               style={{
-                color: questionState.soal1[questionState.currentQuestionIndex].currentAnswer === 'ragu' ? 'white' : '#f6993f',
-                backgroundColor: questionState.soal1[questionState.currentQuestionIndex].currentAnswer === 'ragu' ? '#f6993f' : 'white'
+                color: currentQuestion?.currentAnswer === 'ragu' ? 'white' : '#f6993f',
+                backgroundColor: currentQuestion?.currentAnswer === 'ragu' ? '#f6993f' : 'white'
                }}
               >
                 <p className='font-bold'>! Ragu</p>
               </button>
             </div>
             <div>
-              <button className='px-8 py-2 rounded-full bg-[#529493] flex items-center gap-3' onClick={() => dispatch({type: "NEXT_QUESTION"})}>
+              <button className='px-8 py-2 rounded-full bg-[#529493] flex items-center gap-3' 
+                onClick={() => {
+                  dispatch({type: "NEXT_QUESTION"});
+                  handleNext();
+                }}>
                 <p className='font-bold text-white's>Next</p>
                 <img className='h-5' src={nextIcon} alt="next" />
               </button>
@@ -114,12 +209,15 @@ const Ujian1 = () => {
               <div className='pt-4'>
                 <p className='font-bold'>Nomor Soal</p>
               </div>
-              <div className='flex gap-2  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto max-h-64'>
-                {questionState.soal1.map((soal) => (
+              <div className='flex gap-3  min-[1000px]:flex-wrap w-full p-4 overflow-x-scroll min-[1000px]:overflow-x-auto max-h-64 min-[1000px]:justify-center'>
+                {ujian.Soal.map((soal) => (
                   <QuestionNumber 
                     soal={soal}
-                    key={soal.No}
-                    onClick={() => dispatch({type: "SELECT_NUMBER", payload: soal.No})}
+                    key={soal.no}
+                    onClick={() => {
+                      // dispatch({type: "SELECT_NUMBER", payload: soal.no});
+                      setQuestionIndex(soal.no - 1)
+                    }}
                   />
                 ))}
                 

@@ -12,8 +12,8 @@ import documentIcon from '../../icons/document.png'
 import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
-  const [questionState, dispatch] = useContext(QuestionContext);
-  console.log(questionState)
+  const [questionState, dispatch] = useContext(QuestionContext).value;
+  
 
   const [opened, setOpened] = useState(false);
 

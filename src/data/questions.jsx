@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  console.log( state, action)
+  // console.log( state, action)
   switch (action.type) {
     case "DELETE_ANSWER": {
       const newSoal1 = state.soal1.map((question, index) => {
