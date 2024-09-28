@@ -1,9 +1,9 @@
-const BankSoal = {
-  LPDP:[
+const BankSoal = [
     {
       Title: 'Tryout LPDP SKOLASTIK 2024 #1',
       waktu: 600000,
       ujianId: "9ae57b8d-0174-450d-a0e1-f1d51bd7498c",
+      type: 'LPDP',
       Soal: [
         {
           no:1,
@@ -176,6 +176,7 @@ const BankSoal = {
       Title: 'Tryout LPDP SKOLASTIK 2024 #2',
       waktu: 600000,
       ujianId: "b1fd1872-a5a9-4a6a-b3d9-111457d1bf2e",
+      type: 'LPDP',
       Soal: [
         {
           no:1,
@@ -348,6 +349,7 @@ const BankSoal = {
       Title: 'Tryout LPDP SKOLASTIK 2024 #3',
       waktu: 600000,
       ujianId: "5900fc9d-8170-43a2-8213-8a47995b7d7d",
+      type: 'LPDP',
       Soal: [
         {
           no:1,
@@ -521,6 +523,7 @@ const BankSoal = {
       Title: 'Tryout LPDP SKOLASTIK 2024 #4',
       waktu: 600000,
       ujianId: "8182aba8-1765-4f05-b3ff-6d8c30d1548d",
+      type: 'LPDP',
       Soal: [
         {
           no:1,
@@ -695,6 +698,7 @@ const BankSoal = {
       Title: 'Tryout LPDP SKOLASTIK 2024 #5',
       waktu: 600000,
       ujianId: "273891ec-df40-4e64-a8df-3b72f5ec0fcc",
+      type: 'LPDP',
       Soal: [
         {
           no:1,
@@ -863,13 +867,11 @@ const BankSoal = {
         }
       ],
     },
-  ],
-
-  CPNS:[
     {
       Title: 'Tryout CPNS SKOLASTIK 2024 #1',
       waktu: 600000,
       ujianId: "1f216d15-1b77-413c-9cc5-449dd41aab6d",
+      type: 'CPNS',
       Soal: [
         {
           no:1,
@@ -1042,6 +1044,7 @@ const BankSoal = {
       Title: 'Tryout CPNS SKOLASTIK 2024 #2',
       waktu: 600000,
       ujianId: "cae3d45f-2982-4834-862b-cdee6cf6acc5",
+      type: 'CPNS',
       Soal: [
         {
           no:1,
@@ -1214,6 +1217,7 @@ const BankSoal = {
       Title: 'Tryout CPNS SKOLASTIK 2024 #3',
       waktu: 600000,
       ujianId: "fea3d964-bce1-4d3f-8734-a2c5ef223afd",
+      type: 'CPNS',
       Soal: [
         {
           no:1,
@@ -1387,6 +1391,7 @@ const BankSoal = {
       Title: 'Tryout CPNS SKOLASTIK 2024 #4',
       waktu: 600000,
       ujianId: "ee7687b7-1b8f-4661-acfd-97ea70e090fa",
+      type: 'CPNS',
       Soal: [
         {
           no:1,
@@ -1561,6 +1566,7 @@ const BankSoal = {
       Title: 'Tryout CPNS SKOLASTIK 2024 #5',
       waktu: 600000,
       ujianId: "6b054968-eefc-4390-bb45-6d34647fd6a9",
+      type: 'CPNS',
       Soal: [
         {
           no:1,
@@ -1729,13 +1735,11 @@ const BankSoal = {
         }
       ],
     },
-  ],
-
-  BUMN:[
     {
       Title: 'Tryout BUMN SKOLASTIK 2024 #1',
       waktu: 600000,
       ujianId: "f27d949a-9f59-44ac-a331-5a6b467cbda8",
+      type: 'BUMN',
       Soal: [
         {
           no:1,
@@ -1908,6 +1912,7 @@ const BankSoal = {
       Title: 'Tryout BUMN SKOLASTIK 2024 #2',
       waktu: 600000,
       ujianId: "b85d14f7-e33b-44e4-ba91-66a96d693dd3",
+      type: 'BUMN',
       Soal: [
         {
           no:1,
@@ -2080,6 +2085,7 @@ const BankSoal = {
       Title: 'Tryout BUMN SKOLASTIK 2024 #3',
       waktu: 600000,
       ujianId: "8ef1e655-9c3c-4056-b370-a7106b7e8b96",
+      type: 'BUMN',
       Soal: [
         {
           no:1,
@@ -2253,6 +2259,7 @@ const BankSoal = {
       Title: 'Tryout BUMN SKOLASTIK 2024 #4',
       waktu: 600000,
       ujianId: "7c6febe7-7226-4e2d-9067-3a9487e15688",
+      type: 'BUMN',
       Soal: [
         {
           no:1,
@@ -2427,6 +2434,7 @@ const BankSoal = {
       Title: 'Tryout BUMN SKOLASTIK 2024 #5',
       waktu: 600000,
       ujianId: "63adfc5a-a5f7-422e-b1b0-7d1e63f1fcce",
+      type: 'BUMN',
       Soal: [
         {
           no:1,
@@ -2595,8 +2603,7 @@ const BankSoal = {
         }
       ],
     },
-  ],
-};
+  ];
 
 
 export default BankSoal;
