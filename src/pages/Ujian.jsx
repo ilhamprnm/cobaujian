@@ -3,9 +3,9 @@ import keteranganUjian from '../images/keterangan-ujian.svg'
 import nextIcon from '../icons/next.png'
 import backIcon from '../icons/back.png'
 import {QuestionContext} from '../data/questions.jsx'
-import Answer from '../components/Answer.jsx'
-import QuestionNumber from '../components/QuestionNumber.jsx'
-import TimeCounter from '../components/TimeCounter.jsx'
+import Answer from '../components/Ujian/Answer.jsx'
+import QuestionNumber from '../components/Ujian/QuestionNumber.jsx'
+import TimeCounter from '../components/Ujian/TimeCounter.jsx'
 import { useParams } from 'react-router-dom'
 
 
@@ -48,8 +48,8 @@ const Ujian1 = () => {
 
   useEffect(() => {
     const findUjian = () => {
-      for (let key in bankSoal) {
-        bankSoal[key].map((ujian) => {
+      
+        bankSoal.map((ujian) => {
           if (ujian.ujianId === ujianId) {
             setUjian(e => ({
               ...e,
@@ -61,7 +61,7 @@ const Ujian1 = () => {
             
           }
         })
-      }
+      
     };
     findUjian();
   }, [ujianId, bankSoal])

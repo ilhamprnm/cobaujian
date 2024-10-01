@@ -4,8 +4,8 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import Platform from "./pages/Platform.jsx";
-import Ujiansaya from './pages/platform-pages/Ujiansaya.jsx'
-import Pembayaran from './pages/platform-pages/Pembayaran.jsx'
+import Ujiansaya from './components/platform/Ujiansaya.jsx'
+import Pembayaran from './components/platform/Pembayaran.jsx'
 import Ujian from './pages/Ujian.jsx'
 
 function App() {

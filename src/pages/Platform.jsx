@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Dashboard from './platform-pages/Dashboard.jsx'
+import Dashboard from '../components/platform/Dashboard.jsx'
 
 
 const Platform = () => {

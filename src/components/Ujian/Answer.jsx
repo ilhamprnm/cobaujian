@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { QuestionContext } from '../data/questions';
+import { QuestionContext } from '../../data/questions';
 
 const Answer = ({answerText, index, onClick, currentQuestion}) => {
   

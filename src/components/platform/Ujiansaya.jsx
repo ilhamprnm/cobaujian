@@ -3,7 +3,7 @@ import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
 import cartImage from '../../icons/cart.png'
-import Contacts from '../../components/Home/Contacts.jsx';
+import Contacts from '../Home/Contacts.jsx';
 import photoProfile from '../../images/profile.jpg'
 import arrowDown from '../../icons/arrow-down.png'
 import menuIcon from '../../icons/menu.svg'
