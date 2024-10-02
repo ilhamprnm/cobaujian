@@ -1,5 +1,6 @@
 import React from 'react'
 import cartIcon from "../../icons/cart.png"
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -38,7 +39,7 @@ const Navbar = () => {
           
         </div>
         <div className='flex'>
-          <a className='py-2 px-3 border border-green-700 rounded-lg font-semibold text-green-700 cursor-pointer' href="/platform">Dashboard</a>
+          <p className='py-2 px-3 border border-green-700 rounded-lg font-semibold text-green-700 cursor-pointer'><Link to={localStorage.getItem('auth-token')?'/platform':'/login'}>{localStorage.getItem('auth-token')?'Dashboard':'Login'}</Link></p>
         </div>
       </div>
       <div className='absolute bg-white top-0 right-0 h-[100vh] border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700' id='cart-layer'>
