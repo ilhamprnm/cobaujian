@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
@@ -9,8 +9,12 @@ import Paket3 from './paket/Paket3.jsx';
 import Contacts from '../Home/Contacts.jsx';
 import photoProfile from '../../images/profile.jpg'
 import menuIcon from '../../icons/menu.svg'
+import Modal from '../Modal.jsx';
+import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
+  const modalData = useContext(QuestionContext).modalData;
+  
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
@@ -38,6 +42,7 @@ const Dashboard = () => {
 
   return (
     <div className='flex'>
+      {modalData.modal && <Modal />}
       <div className='border max-w-64 w-full fixed top-0 bottom-0 left-0 px-2 shadow-xl bg-white hidden min-[625px]:block z-10'>
         <div className='flex flex-col justify-between h-full'>
           <div>
@@ -80,7 +85,7 @@ const Dashboard = () => {
         </div>
         
       </div>
-      <div className='bg-gray-100 w-full min-[625px]:p-11 p-4 relative
+      <div className=' w-full min-[625px]:p-11 p-4 relative
        overflow-hidden'>
         <div className='min-[625px]:ml-64'>
           <div className='flex justify-between border-b-2'>

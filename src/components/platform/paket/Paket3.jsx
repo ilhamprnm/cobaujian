@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 const Paket3 = () => {
   const bankSoal = useContext(QuestionContext).bankSoal;
   const bankSoalCPNS = bankSoal.filter((ujian) => ujian.type === 'CPNS' ) ;
+  const setModalData = useContext(QuestionContext).setModalData;
+  const modalData = useContext(QuestionContext).modalData;
 
   const responsive = {
     superLargeDesktop: {
@@ -18,7 +20,7 @@ const Paket3 = () => {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1121 },
-      items: 3.5
+      items: 3
     },
     tablet: {
       breakpoint: { max: 1121, min: 1018 },
@@ -69,9 +71,7 @@ const Paket3 = () => {
                 </div>
               </div>
               <div className='mt-2 flex text-center'>
-                <Link to={`/ujian/${ujian.ujianId}`} className='flex w-full'>
-                  <button className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white'>Coba Ujian</button>
-                </Link>
+                <button className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white' onClick={() => {setModalData({...modalData,ujian:ujian,modal:!modalData.modal})}}>Coba Ujian</button>
               </div>
             </div>
           
