@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import {soal1, shuffleAnswers} from './contohSoal.js'
 import BankSoal from './BankSoal.js'
 
@@ -103,6 +103,82 @@ export const QuestionProvider = ({children}) => {
   const [modalData, setModalData] = useState({
     modal:false,
   });
+  const [keranjangData, setKeranjangData] = useState([])
+  const [allSoal, setAllSoal] = useState([])
 
-  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData}}>{children}</QuestionContext.Provider>
+  const updateData = () => {
+    fetch('http://localhost:4000/allsoal')
+    .then((response) => response.json())
+    .then((data) => {setAllSoal(data)})
+
+    fetch('http://localhost:4000/getkeranjangdata', {
+      method:'GET',
+      headers: {
+        Accept:'application/form-data',
+        'auth-token':`${localStorage.getItem('auth-token')}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {setKeranjangData(data)})
+  }
+
+  useEffect(() => {
+    updateData();
+  },[])
+
+  const addToKeranjang = (ujian) => {
+
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/addtokeranjang', {
+        method:"POST",
+        headers: {
+          Accept:"application/form-data",
+          'auth-token':`${localStorage.getItem('auth-token')}`,
+          'Content-Type':"application/json"
+        },
+        body:JSON.stringify(ujian)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success === true) {
+          alert(data.message)
+          updateData();
+        } else {
+          alert(data.message)
+        }
+      })
+    } else {
+      alert('Masuk / Daftar terlebih dahulu')
+    }
+    updateData();
+  }
+
+  const removeFromKeranjang = (ujian) => {
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/removefromkeranjang', {
+        method:"POST",
+        headers: {
+          Accept:"application/form-data",
+          'auth-token':`${localStorage.getItem('auth-token')}`,
+          'Content-Type':"application/json"
+        },
+        body:JSON.stringify(ujian)
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success === true) {
+          alert(data.message)
+          updateData();
+        } else {
+          alert(data.message)
+        }
+      })
+    } else {
+      alert('Masuk / Daftar terlebih dahulu')
+    }
+    
+  }
+
+  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData}}>{children}</QuestionContext.Provider>
 }

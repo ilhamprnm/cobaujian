@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
@@ -14,18 +14,36 @@ import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
   const modalData = useContext(QuestionContext).modalData;
-  
+  const keranjangData = useContext(QuestionContext).keranjangData;
+  const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
+  const [keranjangOpened,setKeranjangOpened] = useState(false)
+  let totalHargaKeranjang = 0 ;
+
+  if (modalData.modal) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
+
+  if (keranjangOpened) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
     
     cartLayer.style.transform = 'translateX(0)';
+    setKeranjangOpened(true)
   }
 
   function handleClose() {
     const cartLayer = document.getElementById('cart-layer');
 
-    cartLayer.style.transform = 'translateX(1000px)'
+    cartLayer.style.transform = 'translateX(1000px)';
+    setKeranjangOpened(false)
+
   }
 
   function handleMenu() {
@@ -65,6 +83,7 @@ const Dashboard = () => {
               <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                 <img className='h-6' src={cartImage} alt="cart-icon" />
                 <h2 className='font-semibold'>Keranjang</h2>
+                <div className='font-semibold bg-red-500 text-sm px-2 text-center rounded-full text-white'>{keranjangData.length}</div>
               </div>
             </div>
           </div>
@@ -104,80 +123,50 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000]' id='cart-layer'>
+        <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000] overflow-y-scroll' id='cart-layer'>
           <div className='flex flex-col gap-4 w-full'>
             <div className='flex gap-4 items-center'>
               <div className='flex-1'>
-                <h1 className='font-bold text-2xl'>Keranjang Belanja (4 Ujian)</h1>
+                <h1 className='font-bold text-2xl'>Keranjang Belanja ({keranjangData.length} Ujian)</h1>
               </div>
               <div className='h-8 w-8 flex items-center justify-center bg-gray-200 rounded-md p-5 cursor-pointer' onClick={handleClose}>
                 <p className='font-bold text-2xl'>X</p>
               </div>
             </div>
-
+            
             <div className='flex flex-col gap-2'>
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
+              {keranjangData.map((ujian) => {
+                totalHargaKeranjang += ujian.harga
+                
+               return <div key={ujian.ujianId} className='flex flex-col md:flex-row border p-2 rounded-md'>
+                  <div className='flex-1'>
+                    <p className='font-semibold'>{ujian.Title}</p>
+                   
+                    <p className='font-bold'>{ujian.type}</p>
+                    
                   </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                  <div className='flex-1 flex justify-between items-center'>
+                    <div className='flex gap-4'>
+                      <p className='font-bold'>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
+                    </div>
+                    <div>
+                      <p className='font-semibold hover:underline cursor-pointer' onClick={() => {removeFromKeranjang(ujian)}}>Delete</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              })}
+            </div>
 
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
+            <div className='border p-4 rounded-md'>
+              <div>
+                <p className='font-bold text-lg'>Ringkasan Belanja</p>
               </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
+              <div className='flex justify-between'>
+                <p className='font-semibold '>Total</p>
+                <p className='font-bold'>Rp. {totalHargaKeranjang.toLocaleString('id-ID')}</p>
               </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
+              <div className='flex justify-center'>
+                <button className='bg-[#35b486] p-2 mt-6 text-white font-bold w-full max-w-[300px] rounded-full' >Bayar</button>
               </div>
             </div>
           </div>

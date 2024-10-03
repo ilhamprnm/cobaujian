@@ -23,6 +23,7 @@ const Ujian1 = () => {
   const [questionIndex, setQuestionIndex] = useState(0)
   const bankSoal = useContext(QuestionContext).bankSoal;
   const {ujianId} = useParams();
+  const allSoal = useContext(QuestionContext).allSoal;
 
   const handleNext = () => {
     if (questionIndex < ujian.Soal.length - 1) {
@@ -49,7 +50,7 @@ const Ujian1 = () => {
   useEffect(() => {
     const findUjian = () => {
       
-        bankSoal.map((ujian) => {
+        allSoal.map((ujian) => {
           if (ujian.ujianId === ujianId) {
             setUjian(e => ({
               ...e,
@@ -64,7 +65,7 @@ const Ujian1 = () => {
       
     };
     findUjian();
-  }, [ujianId, bankSoal])
+  }, [ujianId, allSoal])
   
   const currentQuestion = ujian.Soal[questionIndex];
 

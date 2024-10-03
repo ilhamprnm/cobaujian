@@ -7,8 +7,10 @@ import { QuestionContext } from '../../../data/questions';
 import { Link } from 'react-router-dom';
 
 const Paket1 = () => {
-  const bankSoal = useContext(QuestionContext).bankSoal;
-  const bankSoalLPDP = bankSoal.filter((ujian) => ujian.type === 'LPDP' ) ;
+  
+
+  const allSoal = useContext(QuestionContext).allSoal;
+  const allSoalLPDP = allSoal.filter((ujian) => ujian.type === 'LPDP' ) ;
   const setModalData = useContext(QuestionContext).setModalData;
   const modalData = useContext(QuestionContext).modalData;
 
@@ -51,7 +53,7 @@ const Paket1 = () => {
           <h1 className='font-bold text-xl'>LPDP</h1>
         </div>
         <Carousel responsive={responsive} >
-          {bankSoalLPDP.map((ujian) => {
+          {allSoalLPDP.map((ujian) => {
           
             return <div key={ujian.ujianId} className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
               <div>

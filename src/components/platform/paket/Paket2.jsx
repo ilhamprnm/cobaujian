@@ -4,11 +4,12 @@ import 'react-multi-carousel/lib/styles.css';
 import document from '../../../icons/document.png';
 import clock from '../../../icons/clock.png'
 import { QuestionContext } from '../../../data/questions';
-import { Link } from 'react-router-dom';
+
 
 const Paket2 = () => {
-  const bankSoal = useContext(QuestionContext).bankSoal;
-  const bankSoalBUMN = bankSoal.filter((ujian) => ujian.type === 'BUMN') ;
+
+  const allSoal = useContext(QuestionContext).allSoal;
+  const allSoalBUMN = allSoal.filter((ujian) => ujian.type === 'BUMN') ;
   const setModalData = useContext(QuestionContext).setModalData;
   const modalData = useContext(QuestionContext).modalData;
 
@@ -51,7 +52,7 @@ const Paket2 = () => {
           <h1 className='font-bold text-xl'>BUMN</h1>
         </div>
         <Carousel responsive={responsive} >
-        {bankSoalBUMN.map((ujian) => {
+        {allSoalBUMN.map((ujian) => {
 
             return <div key={ujian.ujianId} className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
               <div>
