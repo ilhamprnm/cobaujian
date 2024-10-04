@@ -17,6 +17,9 @@ const Dashboard = () => {
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
   const keranjangData = useContext(QuestionContext).keranjangData;
   const pembayaranData = useContext(QuestionContext).pembayaranData;
+  const handleBayar = useContext(QuestionContext).handleBayar;
+  const handleBatalBayar = useContext(QuestionContext).handleBatalBayar;
+  const historyPembayaranData = useContext(QuestionContext).historyPembayaranData;
   let totalHargaKeranjang = 0 ;
 
   function handleCart() {
@@ -41,24 +44,6 @@ const Dashboard = () => {
     const menuLayer = document.getElementById('menu-layer');
 
     menuLayer.style.transform = 'translateX(1000px)';
-  }
-
-  function handlePaket(number) {
-    const itemCont = document.getElementById(`item-container-${number}`);
-    const paketCont = document.getElementById(`paket-container-${number}`);
-    const paketClicker = document.getElementById(`paket-clicker-${number}`);
-    
-    if (opened) {
-      itemCont.style.maxHeight = '0px';
-      paketCont.style.backgroundColor = 'white';
-      paketClicker.style.backgroundColor = '#e6f4d0';
-      setOpened(false)
-    } else {
-      itemCont.style.maxHeight = '1000px';
-      paketCont.style.backgroundColor = '#e6f4d0';
-      paketClicker.style.backgroundColor = 'white';
-      setOpened(true)
-    }
   }
 
   return (
@@ -141,9 +126,9 @@ const Dashboard = () => {
                     <div className='flex justify-center pb-3 border-b font-bold'>
                       <h2>Detail Pembelian</h2>
                     </div>
-                    {receipt.map((ujian, index) => {
+                    {receipt.map((ujian) => {
                      totalPembayaran += ujian.harga
-                      return <div key={index} className='py-2'>
+                      return <div key={ujian.ujianId} className='py-2'>
                         <p className='font-medium text-sm'>{ujian.Title}</p>
                         <p>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
                       </div>
@@ -151,17 +136,44 @@ const Dashboard = () => {
                     <div className='pt-3 flex border-t justify-center font-bold'>
                       <p>Total: Rp. {totalPembayaran.toLocaleString('id-ID')}</p>
                     </div>
-                    <div>
-                      <button className='bg-[#35b486] mt-3 p-2 rounded-full font-bold text-white w-full'>Bayar</button>
+                    <div className='py-2'>
+                      <button className='bg-[#35b486] mt-3 p-2 rounded-full font-bold text-white w-full' onClick={() => {handleBayar(index)}}>Bayar</button>
+                      <button className='text-[#35b486] mt-3 p-2 rounded-full font-bold shadow-roundBlack w-full' onClick={() => {handleBatalBayar(index)}}>
+                        Batal
+                      </button>
                     </div>
                   </div>
                 </div>
               })}
-
             </div>
 
-            <div>
-              <h2 className='font-bold text-xl'>Menunggu Pembayaran</h2>
+            <div className='mt-4'>
+              <h2 className='font-bold text-xl'>Selesai</h2>
+            </div>
+
+            <div className='flex gap-4 flex-wrap'>
+              {historyPembayaranData.map((receipt, index) => {
+                let totalPembayaran = 0;
+
+                return <div key={index} className='max-w-[280px] w-full'>
+                  <div className='shadow-roundBlack rounded-md p-3'>
+                    <div className='flex justify-center pb-3 border-b font-bold'>
+                      <h2>Detail Pembelian</h2>
+                    </div>
+                    {receipt.map((ujian) => {
+                     totalPembayaran += ujian.harga
+                      return <div key={ujian.ujianId} className='py-2'>
+                        <p className='font-medium text-sm'>{ujian.Title}</p>
+                        <p>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
+                      </div>
+                    })}
+                    <div className='pt-3 flex border-t justify-center font-bold'>
+                      <p>Total: Rp. {totalPembayaran.toLocaleString('id-ID')}</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              })}
             </div>
           </div>
         </div>

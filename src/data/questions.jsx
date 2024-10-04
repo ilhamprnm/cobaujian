@@ -105,13 +105,16 @@ export const QuestionProvider = ({children}) => {
   });
   const [keranjangData, setKeranjangData] = useState([])
   const [pembayaranData, setPembayaranData] = useState([])
+  const [historyPembayaranData,setHistoryPembayaranData] = useState([])
   const [allSoal, setAllSoal] = useState([])
 
   const updateData = () => {
+    // allSoal
     fetch('http://localhost:4000/allsoal')
     .then((response) => response.json())
     .then((data) => {setAllSoal(data)});
 
+    // keranjangData
     fetch('http://localhost:4000/getkeranjangdata', {
       method:'GET',
       headers: {
@@ -123,6 +126,7 @@ export const QuestionProvider = ({children}) => {
     .then((response) => response.json())
     .then((data) => {setKeranjangData(data)});
 
+    // pembayaranData
     fetch('http://localhost:4000/pembayarandata', {
       method:"GET",
       headers:{
@@ -133,11 +137,73 @@ export const QuestionProvider = ({children}) => {
     })
     .then((response) => response.json())
     .then((data) => setPembayaranData(data))
+
+    //  historyPembayaranData
+    fetch('http://localhost:4000/historypembayarandata', {
+      method:"GET",
+      headers:{
+        Accept:'application/form-data',
+        'auth-token':`${localStorage.getItem('auth-token')}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => setHistoryPembayaranData(data))
   }
 
   useEffect(() => {
     updateData();
   },[])
+
+  const handleBatalBayar = (index) => {
+    if(localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/batalbayar', {
+        method:'POST',
+        headers: {
+          Accept:'application/form-data',
+          'auth-token':`${localStorage.getItem('auth-token')}`,
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({index:index})
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.success) {
+          alert(data.message);
+          updateData();
+        } else {
+          alert(data.message)
+        }
+      })
+    } else {
+      alert('Masuk / daftar terlebih dahulu')
+    }
+  }
+
+  const handleBayar = (index) => {
+    if(localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/bayar', {
+        method:'POST',
+        headers: {
+          Accept:'application/form-data',
+          'auth-token':`${localStorage.getItem('auth-token')}`,
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({index:index})
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.success) {
+          alert(data.message);
+          updateData();
+        } else {
+          alert(data.message)
+        }
+      })
+    } else {
+      alert('Masuk / daftar terlebih dahulu')
+    }
+  }
 
   const handlePembayaran = () => {
     if(localStorage.getItem('auth-token')) {
@@ -216,5 +282,5 @@ export const QuestionProvider = ({children}) => {
     
   }
 
-  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData, handlePembayaran, pembayaranData}}>{children}</QuestionContext.Provider>
+  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData, handlePembayaran, pembayaranData, handleBayar, handleBatalBayar, historyPembayaranData}}>{children}</QuestionContext.Provider>
 }
