@@ -104,12 +104,13 @@ export const QuestionProvider = ({children}) => {
     modal:false,
   });
   const [keranjangData, setKeranjangData] = useState([])
+  const [pembayaranData, setPembayaranData] = useState([])
   const [allSoal, setAllSoal] = useState([])
 
   const updateData = () => {
     fetch('http://localhost:4000/allsoal')
     .then((response) => response.json())
-    .then((data) => {setAllSoal(data)})
+    .then((data) => {setAllSoal(data)});
 
     fetch('http://localhost:4000/getkeranjangdata', {
       method:'GET',
@@ -120,12 +121,47 @@ export const QuestionProvider = ({children}) => {
       }
     })
     .then((response) => response.json())
-    .then((data) => {setKeranjangData(data)})
+    .then((data) => {setKeranjangData(data)});
+
+    fetch('http://localhost:4000/pembayarandata', {
+      method:"GET",
+      headers:{
+        Accept:'application/form-data',
+        'auth-token':`${localStorage.getItem('auth-token')}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => setPembayaranData(data))
   }
 
   useEffect(() => {
     updateData();
   },[])
+
+  const handlePembayaran = () => {
+    if(localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/pembayaran', {
+        method:'POST',
+        headers: {
+          Acccept:'application/form-data',
+          'auth-token':`${localStorage.getItem('auth-token')}`,
+          'Content-Type':'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert(data.message);
+          updateData();
+        } else {
+          alert(data.message)
+        }
+      })
+    } else {
+      alert('Masuk / daftar terlebih dahulu')
+    }
+  }
 
   const addToKeranjang = (ujian) => {
 
@@ -180,5 +216,5 @@ export const QuestionProvider = ({children}) => {
     
   }
 
-  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData}}>{children}</QuestionContext.Provider>
+  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData, handlePembayaran, pembayaranData}}>{children}</QuestionContext.Provider>
 }

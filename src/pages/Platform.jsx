@@ -5,9 +5,7 @@ import Dashboard from '../components/platform/Dashboard.jsx'
 
 const Platform = () => {
   return (
-    <Routes>
-      <Route path='/' element={<Dashboard />}/>
-    </Routes>
+    <Dashboard />
   )
 }
 

@@ -11,11 +11,13 @@ import photoProfile from '../../images/profile.jpg'
 import menuIcon from '../../icons/menu.svg'
 import Modal from '../Modal.jsx';
 import { QuestionContext } from '../../data/questions.jsx';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const modalData = useContext(QuestionContext).modalData;
   const keranjangData = useContext(QuestionContext).keranjangData;
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
+  const handlePembayaran = useContext(QuestionContext).handlePembayaran;
   const [keranjangOpened,setKeranjangOpened] = useState(false)
   let totalHargaKeranjang = 0 ;
 
@@ -76,7 +78,7 @@ const Dashboard = () => {
                 <img className='h-6' src={testImage} alt="test-icon" />
                 <h2 className='font-semibold'>Ujian Saya</h2>
               </a>
-              <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform/ujiansaya'>
+              <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform/pembayaran'>
                 <img className='h-6' src={paymentImage} alt="payment-icon" />
                 <h2 className='font-semibold'>Pembayaran</h2>
               </a>
@@ -165,9 +167,12 @@ const Dashboard = () => {
                 <p className='font-semibold '>Total</p>
                 <p className='font-bold'>Rp. {totalHargaKeranjang.toLocaleString('id-ID')}</p>
               </div>
+
+              {keranjangData.length > 0 && 
               <div className='flex justify-center'>
-                <button className='bg-[#35b486] p-2 mt-6 text-white font-bold w-full max-w-[300px] rounded-full' >Bayar</button>
+                <button className='bg-[#35b486] p-2 mt-6 text-white font-bold w-full max-w-[300px] rounded-full' onClick={handlePembayaran} >Process</button>
               </div>
+              }
             </div>
           </div>
         </div>
@@ -188,10 +193,10 @@ const Dashboard = () => {
                   <img className='h-6' src={testImage} alt="test-icon" />
                   <h2 className='font-semibold'>Ujian Saya</h2>
                 </a>
-                <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform/pembayaran'>
+                <Link className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' to={'/platform/pembayaran'}>
                   <img className='h-6' src={paymentImage} alt="payment-icon" />
                   <h2 className='font-semibold'>Pembayaran</h2>
-                </a>
+                </Link>
                 <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                   <img className='h-6' src={cartImage} alt="cart-icon" />
                   <h2 className='font-semibold'>Keranjang</h2>

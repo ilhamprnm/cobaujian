@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
@@ -9,9 +9,15 @@ import arrowDown from '../../icons/arrow-down.png'
 import menuIcon from '../../icons/menu.svg'
 import clockIcon from '../../icons/clock.png'
 import documentIcon from '../../icons/document.png'
+import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
   const [opened, setOpened] = useState(false);
+  const handlePembayaran = useContext(QuestionContext).handlePembayaran;
+  const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
+  const keranjangData = useContext(QuestionContext).keranjangData;
+  const pembayaranData = useContext(QuestionContext).pembayaranData;
+  let totalHargaKeranjang = 0 ;
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
@@ -72,13 +78,14 @@ const Dashboard = () => {
                 <img className='h-6' src={testImage} alt="test-icon" />
                 <h2 className='font-semibold'>Ujian Saya</h2>
               </a>
-              <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 bg-green-500/30 cursor-pointer flex gap-3' href='/platform/ujiansaya'>
+              <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 bg-green-500/30 cursor-pointer flex gap-3' href='/platform/pembayaran'>
                 <img className='h-6' src={paymentImage} alt="payment-icon" />
                 <h2 className='font-semibold'>Pembayaran</h2>
               </a>
               <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                 <img className='h-6' src={cartImage} alt="cart-icon" />
                 <h2 className='font-semibold'>Keranjang</h2>
+                <div className='font-semibold bg-red-500 text-sm px-2 text-center rounded-full text-white'>{keranjangData.length}</div>
               </div>
             </div>
           </div>
@@ -119,44 +126,44 @@ const Dashboard = () => {
           </div>
 
           <div className='mt-2 py-4 border-t-[1px] flex flex-col gap-3'>
+            
+
             <div>
-              <h2 className='font-bold text-xl'>Selesai</h2>
+              <h2 className='font-bold text-xl'>Menunggu Pembayaran</h2>
             </div>
 
             <div className='flex gap-4 flex-wrap'>
-              <div className=' shadow-roundBlack rounded-md p-3 max-w-[300px]'>
-                <div className='flex justify-center pb-3 font-bold'>
-                  <h2>Detail Pembelian</h2>
-                </div>
-                <div className=' border-y-[1px] py-3'>
-                  <p className='font-medium'>Prediksi TKD & AKHLAK BUMN</p>
-                  <p className='font-medium'>Paket #1</p>
-                  <p>Rp 45.000</p>
-                </div>
-                <div className='pt-3 flex justify-center font-bold'>
-                  <p>Total: Rp 45.000</p>
-                </div>
-              </div>
+              {pembayaranData.map((receipt, index) => {
+                let totalPembayaran = 0;
 
-              <div className=' shadow-roundBlack rounded-md p-3 max-w-[300px]'>
-              <div className='flex justify-center pb-3 font-bold'>
-                <h2>Detail Pembelian</h2>
-              </div>
-              <div className=' border-y-[1px] py-3'>
-                <p className='font-medium'>Prediksi TKD & AKHLAK BUMN</p>
-                <p className='font-medium'>Paket #2</p>
-                <p>Rp 45.000</p>
-              </div>
-              <div className='pt-3 flex justify-center font-bold'>
-                <p>Total: Rp 45.000</p>
-              </div>
-            </div>
+                return <div key={index} className='max-w-[280px] w-full'>
+                  <div className='shadow-roundBlack rounded-md p-3'>
+                    <div className='flex justify-center pb-3 border-b font-bold'>
+                      <h2>Detail Pembelian</h2>
+                    </div>
+                    {receipt.map((ujian, index) => {
+                     totalPembayaran += ujian.harga
+                      return <div key={index} className='py-2'>
+                        <p className='font-medium text-sm'>{ujian.Title}</p>
+                        <p>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
+                      </div>
+                    })}
+                    <div className='pt-3 flex border-t justify-center font-bold'>
+                      <p>Total: Rp. {totalPembayaran.toLocaleString('id-ID')}</p>
+                    </div>
+                    <div>
+                      <button className='bg-[#35b486] mt-3 p-2 rounded-full font-bold text-white w-full'>Bayar</button>
+                    </div>
+                  </div>
+                </div>
+              })}
+
             </div>
 
-            
+            <div>
+              <h2 className='font-bold text-xl'>Menunggu Pembayaran</h2>
+            </div>
           </div>
-
-          
         </div>
 
         <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000]' id='cart-layer'>
@@ -171,69 +178,42 @@ const Dashboard = () => {
             </div>
 
             <div className='flex flex-col gap-2'>
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
+              {keranjangData.map((ujian) => {
+                  totalHargaKeranjang += ujian.harga
+                  
+                return <div key={ujian.ujianId} className='flex flex-col md:flex-row border p-2 rounded-md'>
+                    <div className='flex-1'>
+                      <p className='font-semibold'>{ujian.Title}</p>
+                    
+                      <p className='font-bold'>{ujian.type}</p>
+                      
+                    </div>
+                    <div className='flex-1 flex justify-between items-center'>
+                      <div className='flex gap-4'>
+                        <p className='font-bold'>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
+                      </div>
+                      <div>
+                        <p className='font-semibold hover:underline cursor-pointer' onClick={() => {removeFromKeranjang(ujian)}}>Delete</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
+                })}
+            </div>
+
+            <div className='border p-4 rounded-md'>
+              <div>
+                <p className='font-bold text-lg'>Ringkasan Belanja</p>
+              </div>
+              <div className='flex justify-between'>
+                <p className='font-semibold '>Total</p>
+                <p className='font-bold'>Rp. {totalHargaKeranjang.toLocaleString('id-ID')}</p>
               </div>
 
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
+              {keranjangData.length > 0 && 
+              <div className='flex justify-center'>
+                <button className='bg-[#35b486] p-2 mt-6 text-white font-bold w-full max-w-[300px] rounded-full' onClick={handlePembayaran} >Process</button>
               </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
-              </div>
+              }
             </div>
           </div>
         </div>
@@ -262,6 +242,7 @@ const Dashboard = () => {
                 <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                   <img className='h-6' src={cartImage} alt="cart-icon" />
                   <h2 className='font-semibold'>Keranjang</h2>
+                  <div className='font-semibold bg-red-500 text-sm px-2 text-center rounded-full text-white'>{keranjangData.length}</div>
                 </div>
               </div>
             </div>
