@@ -150,9 +150,15 @@ const Dashboard = () => {
               <div className='flex items-center p-2'>
                 <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
               </div>
-              <div className='leading-4 flex flex-col justify-center'>
-                <p className='font-bold text-sm'>{userData.nama}</p>
-                <p className='text-[12px] text-gray-600'>{userData.email}</p>
+              <div className='leading-4 flex items-center justify-between w-full'>
+                <div>
+                  <p className='font-bold text-sm'>{userData.nama}</p>
+                  <p className='text-[12px] text-gray-600'>{userData.email}</p>
+                </div>
+
+                <div className='p-2'>
+                  <button className='font-bold text-red-500 text-xs' onClick={() => {localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
+                </div>
               </div>
             </div>
             <div className='text-center text-gray-600 text-[12px]'>
@@ -415,9 +421,15 @@ const Dashboard = () => {
                 <div className='flex items-center p-2'>
                   <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
                 </div>
-                <div className='leading-4 flex flex-col justify-center'>
-                  <p className='font-bold text-sm'>{userData.nama}</p>
-                  <p className='text-[12px] text-gray-600'>{userData.email}</p>
+                <div className='leading-4 flex items-center justify-between w-full'>
+                  <div>
+                    <p className='font-bold text-sm'>{userData.nama}</p>
+                    <p className='text-[12px] text-gray-600'>{userData.email}</p>
+                  </div>
+
+                  <div className='p-2'>
+                    <button className='font-bold text-red-500 text-xs' onClick={() => {localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
+                  </div>
                 </div>
               </div>
               <div className='text-center text-gray-600 text-[12px]'>
