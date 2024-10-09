@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import document from '../../../icons/document.png';
-import clock from '../../../icons/clock.png'
+import clock from '../../../icons/clock.png';
+import done from '../../../icons/done.png';
 import { QuestionContext } from '../../../data/questions';
 import { Link } from 'react-router-dom';
 
@@ -82,7 +83,7 @@ const Paket3 = () => {
               return <div key={ujian.ujianId} className='border p-4 rounded-md mr-5 flex flex-col gap-3'>
                 <div className='flex justify-between'>
                   <button className='bg-pink-400 py-1 px-3 rounded-md text-white font-bold'>CPNS</button>
-                  <button className='bg-red-400 py-1 px-3 rounded-md text-white font-bold'>Sudah dimiliki</button>
+                  <button className='px-3 rounded-md text-white font-bold'><img className='h-8' src={done} alt="terbeli" /></button>
                 </div>
                 <div>
                   <h1 className='font-bold text-xl leading-6'>{ujian.Title}</h1>
