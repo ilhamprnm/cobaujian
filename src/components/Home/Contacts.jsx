@@ -54,8 +54,8 @@ const Contacts = () => {
   }
 
   return (
-    <div className='fixed bottom-20 right-10 bg-gray-200 p-4 rounded-full shadow-roundBlack cursor-pointer hidden min-[480px]:block' onClick={handleClick}>
-      <div className='relative'>
+    <div className='fixed bottom-20 right-10 bg-gray-200 p-4 rounded-full shadow-roundBlack cursor-pointer hidden min-[480px]:block'>
+      <div className='relative z-10' onClick={handleClick}>
         <img  className='h-7 duration-700' id='contacts-image' src={contacts} alt="contacts-icon" />
         <img className='h-7 absolute top-0 opacity-0 duration-700' id='close-icon' src={close} alt="close-icon" />
       </div>

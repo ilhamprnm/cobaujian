@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className='flex items-center' >
         <img src={ujianlah} className='h-10' alt="ujianlah-logo" />
       </div>
-      <div className='hidden md:block '>
+      <div className='hidden min-[1000px]:block '>
         <ul className=' flex h-full items-center gap-2 lg:gap-9 font-semibold '>
           <li className='cursor-pointer hover:underline'><a href="#hero-section">Home</a></li>
           <li className='cursor-pointer hover:underline'><a href="#testimoni-section">Testimoni</a></li>
@@ -35,55 +35,14 @@ const Navbar = () => {
           <li className='hover:underline cursor-pointer'><a href="#demo-section">Coba Sekarang</a></li>
         </ul>
       </div>
+      
       <div className='flex justify-between gap-3'>
-        <div className='py-2 px-3 rounded-lg border border-green-700 flex items-center w-11 relative cursor-pointer' onClick={handleCart}>
-          <img src={cartIcon} className='h-5' alt="cart-icon" />
-          <div className='absolute bg-red-600 p-2 rounded-full text-white font-semibold -top-1 -right-2'>
-            <p className='h-2 w-2 text-[11px] flex items-center justify-center'>{keranjangData.length}</p>
-          </div>
-          
-        </div>
         <div className='flex'>
           <p className='py-2 px-3 border border-green-700 rounded-lg font-semibold text-green-700 cursor-pointer'><Link to={localStorage.getItem('auth-token')?'/platform':'/login'}>{localStorage.getItem('auth-token')?'Dashboard':'Login'}</Link></p>
         </div>
       </div>
-      <div className='absolute bg-white top-0 right-0 h-[100vh] border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700' id='cart-layer'>
-        <div className='flex flex-col gap-4 w-full'>
-          <div className='flex gap-4 items-center'>
-            <div className='flex-1'>
-              <h1 className='font-bold text-2xl'>Keranjang Belanja ({keranjangData.length} Ujian)</h1>
-            </div>
-            <div className='h-8 w-8 flex items-center justify-center bg-gray-200 rounded-md p-5 cursor-pointer' onClick={handleClose}>
-              <p className='font-bold text-2xl'>X</p>
-            </div>
-          </div>
-
-          <div className='flex flex-col gap-2'>
-            
-            {keranjangData.map((ujian) => {
-              totalHargaKeranjang += ujian.harga
-              
-              return <div key={ujian.ujianId} className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>{ujian.Title}</p>
-                  
-                  <p className='font-bold'>{ujian.type}</p>
-                  
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <p className='font-bold'>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer' onClick={() => {removeFromKeranjang(ujian)}}>Delete</p>
-                  </div>
-                </div>
-              </div>
-            })}
-          </div>
-
-        </div>
-      </div>
+      
+      
     </div>
   )
 }
