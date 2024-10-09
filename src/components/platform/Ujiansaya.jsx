@@ -22,7 +22,9 @@ const Dashboard = () => {
   const ujianSayaData = useContext(QuestionContext).ujianSayaData;
   let totalHargaKeranjang = 0 ; 
 
-  const [opened, setOpened] = useState(false);
+  const [openedP1, setOpenedP1] = useState(false);
+  const [openedP2, setOpenedP2] = useState(false);
+  const [openedP3, setOpenedP3] = useState(false);
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
@@ -48,21 +50,57 @@ const Dashboard = () => {
     menuLayer.style.transform = 'translateX(1000px)';
   }
 
-  function handlePaket(number) {
-    const itemCont = document.getElementById(`item-container-${number}`);
-    const paketCont = document.getElementById(`paket-container-${number}`);
-    const paketClicker = document.getElementById(`paket-clicker-${number}`);
+  function handlePaket1() {
+    const itemCont = document.getElementById(`item-container-1`);
+    const paketCont = document.getElementById(`paket-container-1`);
+    const paketClicker = document.getElementById(`paket-clicker-1`);
     
-    if (opened) {
+    if (openedP1) {
       itemCont.style.maxHeight = '0px';
       paketCont.style.backgroundColor = 'white';
       paketClicker.style.backgroundColor = '#e6f4d0';
-      setOpened(false)
+      setOpenedP1(false)
     } else {
       itemCont.style.maxHeight = '1000px';
       paketCont.style.backgroundColor = '#e6f4d0';
       paketClicker.style.backgroundColor = 'white';
-      setOpened(true)
+      setOpenedP1(true)
+    }
+  }
+
+  function handlePaket2() {
+    const itemCont = document.getElementById(`item-container-2`);
+    const paketCont = document.getElementById(`paket-container-2`);
+    const paketClicker = document.getElementById(`paket-clicker-2`);
+    
+    if (openedP2) {
+      itemCont.style.maxHeight = '0px';
+      paketCont.style.backgroundColor = 'white';
+      paketClicker.style.backgroundColor = '#e6f4d0';
+      setOpenedP2(false)
+    } else {
+      itemCont.style.maxHeight = '1000px';
+      paketCont.style.backgroundColor = '#e6f4d0';
+      paketClicker.style.backgroundColor = 'white';
+      setOpenedP2(true)
+    }
+  }
+
+  function handlePaket3() {
+    const itemCont = document.getElementById(`item-container-3`);
+    const paketCont = document.getElementById(`paket-container-3`);
+    const paketClicker = document.getElementById(`paket-clicker-3`);
+    
+    if (openedP3) {
+      itemCont.style.maxHeight = '0px';
+      paketCont.style.backgroundColor = 'white';
+      paketClicker.style.backgroundColor = '#e6f4d0';
+      setOpenedP3(false)
+    } else {
+      itemCont.style.maxHeight = '1000px';
+      paketCont.style.backgroundColor = '#e6f4d0';
+      paketClicker.style.backgroundColor = 'white';
+      setOpenedP3(true)
     }
   }
 
@@ -125,7 +163,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-1'>
-            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(1)}} id='paket-clicker-1'>
+            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket1()}} id='paket-clicker-1'>
               <div className='flex items-center'>
                 <p className='p-2 bg-orange-400 w-[80px] text-center rounded-md font-semibold text-white'>LPDP</p>
               </div>
@@ -176,7 +214,7 @@ const Dashboard = () => {
           </div>
 
           <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-2'>
-            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(2)}} id='paket-clicker-2'>
+            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket2()}} id='paket-clicker-2'>
               <div className='flex items-center'>
                 <p className='p-2 bg-[#5fa6f4] w-[80px] text-center rounded-md font-semibold text-white'>BUMN</p>
               </div>
@@ -227,7 +265,7 @@ const Dashboard = () => {
           </div>
 
           <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-3'>
-            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(3)}} id='paket-clicker-3'>
+            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket3()}} id='paket-clicker-3'>
               <div className='flex items-center'>
                 <p className='p-2 bg-[#f373b4] w-[80px] text-center rounded-md font-semibold text-white'>CPNS</p>
               </div>
