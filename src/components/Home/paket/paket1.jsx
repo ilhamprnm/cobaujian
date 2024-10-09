@@ -7,7 +7,7 @@ import { QuestionContext } from '../../../data/questions';
 import { Link } from 'react-router-dom';
 
 const paket1 = () => {
-  const [questionState, dispatch] = useContext(QuestionContext).value
+  
   const bankSoal = useContext(QuestionContext).bankSoal;
   const bankSoalLPDP = bankSoal.filter((ujian) => ujian.type === 'LPDP');
 

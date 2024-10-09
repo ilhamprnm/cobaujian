@@ -10,8 +10,6 @@ import { useParams } from 'react-router-dom'
 
 
 const Ujian1 = () => {
-
-  const [questionState, dispatch] = useContext(QuestionContext).value;
   
   const [ujian, setUjian] = useState({
     Title:'',

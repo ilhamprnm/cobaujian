@@ -2,17 +2,13 @@ import React, {useContext, useState} from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
-import cartImage from '../../icons/cart.png'
+import cartImage from '../../icons/cart.png';
 import Contacts from '../Home/Contacts.jsx';
-import photoProfile from '../../images/profile.jpg'
-import arrowDown from '../../icons/arrow-down.png'
-import menuIcon from '../../icons/menu.svg'
-import clockIcon from '../../icons/clock.png'
-import documentIcon from '../../icons/document.png'
+import photoProfile from '../../images/profile.jpg';
+import menuIcon from '../../icons/menu.svg';
 import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
-  const [opened, setOpened] = useState(false);
   const userData = useContext(QuestionContext).userData;
   const handlePembayaran = useContext(QuestionContext).handlePembayaran;
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
@@ -21,18 +17,31 @@ const Dashboard = () => {
   const handleBayar = useContext(QuestionContext).handleBayar;
   const handleBatalBayar = useContext(QuestionContext).handleBatalBayar;
   const historyPembayaranData = useContext(QuestionContext).historyPembayaranData;
+  const [keranjangOpened,setKeranjangOpened] = useState(false);
   let totalHargaKeranjang = 0 ;
+
+  if (keranjangOpened) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
     
     cartLayer.style.transform = 'translateX(0)';
+    cartOverlay.style.transform = 'translateX(0)';
+    setKeranjangOpened(true)
   }
 
   function handleClose() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
 
     cartLayer.style.transform = 'translateX(1000px)'
+    cartOverlay.style.transform = 'translateX(1500px)';
+    setKeranjangOpened(false);
   }
 
   function handleMenu() {
@@ -178,12 +187,15 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        
+        <div className='fixed top-0 right-0 bottom-0 left-0 h-[100vh] w-[100vw] bg-gray-600/40 z-[10000] flex items-center translate-x-[1500px]' onClick={handleClose} id='cart-overlay'>
+        </div>
 
         <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000]' id='cart-layer'>
           <div className='flex flex-col gap-4 w-full'>
             <div className='flex gap-4 items-center'>
               <div className='flex-1'>
-                <h1 className='font-bold text-2xl'>Keranjang Belanja (4 Ujian)</h1>
+                <h1 className='font-bold text-2xl'>Keranjang Belanja ({keranjangData.length} Ujian)</h1>
               </div>
               <div className='h-8 w-8 flex items-center justify-center bg-gray-200 rounded-md p-5 cursor-pointer' onClick={handleClose}>
                 <p className='font-bold text-2xl'>X</p>

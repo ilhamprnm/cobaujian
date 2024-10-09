@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import { QuestionContext } from '../../data/questions';
+import React from 'react'
+
 
 const Answer = ({answerText, index, onClick, currentQuestion}) => {
   
-  const [questionState, dispatch] = useContext(QuestionContext).value;
+  
   const letterMapping = ["A", "B", "C", "D", "E"];
   return (
     <div 

@@ -19,16 +19,11 @@ const Dashboard = () => {
   const keranjangData = useContext(QuestionContext).keranjangData;
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
   const handlePembayaran = useContext(QuestionContext).handlePembayaran;
-  const [keranjangOpened,setKeranjangOpened] = useState(false)
+  const [keranjangOpened,setKeranjangOpened] = useState(false);
   let totalHargaKeranjang = 0 ;
 
-  if (modalData.modal) {
-    document.body.classList.add('overflow-hidden')
-  } else {
-    document.body.classList.remove('overflow-hidden')
-  }
-
-  if (keranjangOpened) {
+  
+  if (modalData.modal || keranjangOpened) {
     document.body.classList.add('overflow-hidden')
   } else {
     document.body.classList.remove('overflow-hidden')
@@ -36,15 +31,20 @@ const Dashboard = () => {
 
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
+
     
     cartLayer.style.transform = 'translateX(0)';
+    cartOverlay.style.transform = 'translateX(0)';
     setKeranjangOpened(true)
   }
 
   function handleClose() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
 
     cartLayer.style.transform = 'translateX(1000px)';
+    cartOverlay.style.transform = 'translateX(1500px)';
     setKeranjangOpened(false)
 
   }
@@ -126,6 +126,8 @@ const Dashboard = () => {
           </div>
         </div>
 
+        <div className='fixed top-0 right-0 bottom-0 left-0 h-[100vh] w-[100vw] bg-gray-600/40 z-[10000] flex items-center translate-x-[1500px]' onClick={handleClose} id='cart-overlay'>
+        </div>
         <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000] overflow-y-scroll' id='cart-layer'>
           <div className='flex flex-col gap-4 w-full'>
             <div className='flex gap-4 items-center'>
@@ -209,9 +211,15 @@ const Dashboard = () => {
                 <div className='flex items-center p-2'>
                   <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
                 </div>
-                <div className='leading-4 flex flex-col justify-center'>
-                  <p className='font-bold text-sm'>{userData.nama}</p>
-                  <p className='text-[12px] text-gray-600'>{userData.email}</p>
+                <div className='leading-4 flex items-center justify-between w-full'>
+                  <div>
+                    <p className='font-bold text-sm'>{userData.nama}</p>
+                    <p className='text-[12px] text-gray-600'>{userData.email}</p>
+                  </div>
+
+                  <div className='p-2'>
+                    <button className='font-bold text-red-500 text-sm'>Logout</button>
+                  </div>
                 </div>
               </div>
               <div className='text-center text-gray-600 text-[12px]'>

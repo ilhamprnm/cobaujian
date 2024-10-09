@@ -13,29 +13,42 @@ import { QuestionContext } from '../../data/questions.jsx';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const [questionState, dispatch] = useContext(QuestionContext).value;
 
   const userData = useContext(QuestionContext).userData;
   const keranjangData = useContext(QuestionContext).keranjangData; 
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
   const handlePembayaran = useContext(QuestionContext).handlePembayaran;
   const ujianSayaData = useContext(QuestionContext).ujianSayaData;
+  const [keranjangOpened,setKeranjangOpened] = useState(false);
   let totalHargaKeranjang = 0 ; 
 
   const [openedP1, setOpenedP1] = useState(false);
   const [openedP2, setOpenedP2] = useState(false);
   const [openedP3, setOpenedP3] = useState(false);
 
+  if (keranjangOpened) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
+
+
   function handleCart() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
     
     cartLayer.style.transform = 'translateX(0)';
+    cartOverlay.style.transform = 'translateX(0)';
+    setKeranjangOpened(true)
   }
 
   function handleClose() {
     const cartLayer = document.getElementById('cart-layer');
+    const cartOverlay = document.getElementById('cart-overlay');
 
-    cartLayer.style.transform = 'translateX(1000px)'
+    cartLayer.style.transform = 'translateX(1000px)';
+    cartOverlay.style.transform = 'translateX(1500px)';
+    setKeranjangOpened(false)
   }
 
   function handleMenu() {
@@ -201,7 +214,7 @@ const Dashboard = () => {
                       
                       <div className='w-full flex text-center'>
                         <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
-                          <button className='bg-green-600/70 w-full py-2 rounded-full font-semibold text-white'>Coba Lagi</button>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full font-semibold text-white'>Coba Ujian</button>
                         </Link>
                       </div>
                     </div>
@@ -252,7 +265,7 @@ const Dashboard = () => {
                       
                       <div className='w-full flex text-center'>
                         <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
-                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Lagi</button>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Ujian</button>
                         </Link>
                       </div>
                     </div>
@@ -302,7 +315,7 @@ const Dashboard = () => {
                     <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
                       <div className='w-full flex text-center'>
                         <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
-                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Lagi</button>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Ujian</button>
                         </Link>
                       </div>
                     </div>
@@ -314,7 +327,9 @@ const Dashboard = () => {
 
           </div>
         </div>
-
+        
+        <div className='fixed top-0 right-0 bottom-0 left-0 h-[100vh] w-[100vw] bg-gray-600/40 z-[10000] flex items-center translate-x-[1500px]' onClick={handleClose} id='cart-overlay'>
+        </div>
         <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000]' id='cart-layer'>
           <div className='flex flex-col gap-4 w-full'>
             <div className='flex gap-4 items-center'>
