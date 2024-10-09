@@ -10,6 +10,7 @@ import Contacts from '../Home/Contacts.jsx';
 import photoProfile from '../../images/profile.jpg'
 import menuIcon from '../../icons/menu.svg'
 import Modal from '../Modal.jsx';
+import ujianlah from '../../images/Ujianlah-landscape.png'
 import { QuestionContext } from '../../data/questions.jsx';
 import { Link } from 'react-router-dom';
 
@@ -68,7 +69,7 @@ const Dashboard = () => {
         <div className='flex flex-col justify-between h-full'>
           <div>
             <div className='flex justify-center py-4 border-b-[1px]'>
-              <h1 className='font-bold'>Ujianlah</h1>
+              <img src={ujianlah} alt="ujianlah-logo" className='h-8' />
             </div>
             <div>
               <a className='p-2 px-4 mt-3 rounded-md bg-green-500/30 hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform'>

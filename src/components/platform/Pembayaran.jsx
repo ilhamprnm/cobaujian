@@ -6,6 +6,7 @@ import cartImage from '../../icons/cart.png';
 import Contacts from '../Home/Contacts.jsx';
 import photoProfile from '../../images/profile.jpg';
 import menuIcon from '../../icons/menu.svg';
+import ujianlah from '../../images/Ujianlah-landscape.png';
 import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
@@ -62,7 +63,7 @@ const Dashboard = () => {
         <div className='flex flex-col justify-between h-full'>
           <div>
             <div className='flex justify-center py-4 border-b-[1px]'>
-              <h1 className='font-bold'>Ujianlah</h1>
+              <img src={ujianlah} alt="ujianlah-logo" className='h-8' />
             </div>
             <div>
               <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform'>

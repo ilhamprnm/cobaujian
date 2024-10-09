@@ -1,5 +1,6 @@
 import React from 'react'
 import heroImage from '../../images/hero_image.webp'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
@@ -15,7 +16,9 @@ const Hero = () => {
           <p className='text-lg text-center md:text-start'>Temukan simulasi ujian berkualitas dan kumpulan soal terlengkap untuk persiapan ujianmu. Ayo, tingkatkan kepercayaan diri dan wujudkan impianmu!</p>
         </div>
         <div>
-          <a className='p-2 px-10 rounded-md bg-green-600 font-bold text-white' href='/platform'>Cari Ujian</a>
+          <Link to={localStorage.getItem('auth-token')?'/platform':'/login'}>
+            <button className='p-2 px-10 rounded-md bg-green-600 font-bold text-white'>Cari Ujian</button>
+          </Link>
         </div>
         <div>
           <p className='text-gray-500'>Gabung dengan 2500+ pendaftar lainnya</p>

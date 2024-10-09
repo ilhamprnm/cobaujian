@@ -2,13 +2,14 @@ import React, {useState, useContext} from 'react';
 import dashboardImage from '../../icons/dashboard.png';
 import testImage from '../../icons/test.png';
 import paymentImage from '../../icons/payment.png';
-import cartImage from '../../icons/cart.png'
+import cartImage from '../../icons/cart.png';
 import Contacts from '../Home/Contacts.jsx';
-import photoProfile from '../../images/profile.jpg'
-import arrowDown from '../../icons/arrow-down.png'
-import menuIcon from '../../icons/menu.svg'
-import clockIcon from '../../icons/clock.png'
-import documentIcon from '../../icons/document.png'
+import photoProfile from '../../images/profile.jpg';
+import arrowDown from '../../icons/arrow-down.png';
+import menuIcon from '../../icons/menu.svg';
+import clockIcon from '../../icons/clock.png';
+import documentIcon from '../../icons/document.png';
+import ujianlah from '../../images/Ujianlah-landscape.png';
 import { QuestionContext } from '../../data/questions.jsx';
 import { Link } from 'react-router-dom';
 
@@ -123,7 +124,7 @@ const Dashboard = () => {
         <div className='flex flex-col justify-between h-full'>
           <div>
             <div className='flex justify-center py-4 border-b-[1px]'>
-              <h1 className='font-bold'>CobaUjian</h1>
+              <img src={ujianlah} alt="ujianlah-logo" className='h-8' />
             </div>
             <div>
               <a className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' href='/platform'>

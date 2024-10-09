@@ -66,7 +66,7 @@ const paket1 = () => {
                 </div>
               </div>
               <div className='mt-2 flex text-center'>
-                <Link to={`/ujian/${ujian.ujianId}`} className='flex w-full'>
+                <Link to={localStorage.getItem('auth-token')?'/platform':'/login'} className='flex w-full'>
                   <button className='w-full bg-green-600 hover:bg-green-700 duration-500  p-1 rounded-md font-bold text-white cursor-pointer'>Coba Ujian</button>
                 </Link>
               </div>
