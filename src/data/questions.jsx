@@ -103,16 +103,30 @@ export const QuestionProvider = ({children}) => {
   const [modalData, setModalData] = useState({
     modal:false,
   });
-  const [keranjangData, setKeranjangData] = useState([])
-  const [pembayaranData, setPembayaranData] = useState([])
-  const [historyPembayaranData,setHistoryPembayaranData] = useState([])
-  const [allSoal, setAllSoal] = useState([])
+  const [userData, setUserData] = useState([]);
+  const [keranjangData, setKeranjangData] = useState([]);
+  const [pembayaranData, setPembayaranData] = useState([]);
+  const [historyPembayaranData,setHistoryPembayaranData] = useState([]);
+  const [ujianSayaData, setUjianSayaData] = useState([]);
+  const [allSoal, setAllSoal] = useState([]);
 
   const updateData = () => {
     // allSoal
     fetch('http://localhost:4000/allsoal')
     .then((response) => response.json())
     .then((data) => {setAllSoal(data)});
+
+    //userData
+    fetch('http://localhost:4000/getuserdata', {
+      method:'GET',
+      headers: {
+        Accept:'application/form-data',
+        'auth-token':`${localStorage.getItem('auth-token')}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => setUserData(data))
 
     // keranjangData
     fetch('http://localhost:4000/getkeranjangdata', {
@@ -149,6 +163,18 @@ export const QuestionProvider = ({children}) => {
     })
     .then((response) => response.json())
     .then((data) => setHistoryPembayaranData(data))
+
+    // ujian saya
+    fetch('http://localhost:4000/ujiansayadata', {
+      method:"GET",
+      headers:{
+        Accept:'application/form-data',
+        'auth-token':`${localStorage.getItem('auth-token')}`,
+        'Content-Type':'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {setUjianSayaData(data)})
   }
 
   useEffect(() => {
@@ -282,5 +308,5 @@ export const QuestionProvider = ({children}) => {
     
   }
 
-  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData, handlePembayaran, pembayaranData, handleBayar, handleBatalBayar, historyPembayaranData}}>{children}</QuestionContext.Provider>
+  return <QuestionContext.Provider value={{value, bankSoal, modalData, setModalData, addToKeranjang, removeFromKeranjang, allSoal, keranjangData, handlePembayaran, pembayaranData, handleBayar, handleBatalBayar, historyPembayaranData, ujianSayaData, userData}}>{children}</QuestionContext.Provider>
 }

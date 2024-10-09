@@ -13,6 +13,7 @@ import { QuestionContext } from '../../data/questions.jsx';
 
 const Dashboard = () => {
   const [opened, setOpened] = useState(false);
+  const userData = useContext(QuestionContext).userData;
   const handlePembayaran = useContext(QuestionContext).handlePembayaran;
   const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
   const keranjangData = useContext(QuestionContext).keranjangData;
@@ -80,8 +81,8 @@ const Dashboard = () => {
                 <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
               </div>
               <div className='leading-4 flex flex-col justify-center'>
-                <p className='font-bold text-sm'>Rafi Dwizulfa</p>
-                <p className='text-[12px] text-gray-600'>rafidwi3001@gmail.com</p>
+                <p className='font-bold text-sm'>{userData.nama}</p>
+                <p className='text-[12px] text-gray-600'>{userData.email}</p>
               </div>
             </div>
             <div className='text-center text-gray-600 text-[12px]'>
@@ -264,8 +265,8 @@ const Dashboard = () => {
                   <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
                 </div>
                 <div className='leading-4 flex flex-col justify-center'>
-                  <p className='font-bold text-sm'>Rafi Dwizulfa</p>
-                  <p className='text-[12px] text-gray-600'>rafidwi3001@gmail.com</p>
+                  <p className='font-bold text-sm'>{userData.nama}</p>
+                  <p className='text-[12px] text-gray-600'>{userData.email}</p>
                 </div>
               </div>
               <div className='text-center text-gray-600 text-[12px]'>

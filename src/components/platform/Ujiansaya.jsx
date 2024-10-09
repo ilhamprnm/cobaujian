@@ -10,10 +10,17 @@ import menuIcon from '../../icons/menu.svg'
 import clockIcon from '../../icons/clock.png'
 import documentIcon from '../../icons/document.png'
 import { QuestionContext } from '../../data/questions.jsx';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [questionState, dispatch] = useContext(QuestionContext).value;
-  
+
+  const userData = useContext(QuestionContext).userData;
+  const keranjangData = useContext(QuestionContext).keranjangData; 
+  const removeFromKeranjang = useContext(QuestionContext).removeFromKeranjang;
+  const handlePembayaran = useContext(QuestionContext).handlePembayaran;
+  const ujianSayaData = useContext(QuestionContext).ujianSayaData;
+  let totalHargaKeranjang = 0 ; 
 
   const [opened, setOpened] = useState(false);
 
@@ -83,6 +90,7 @@ const Dashboard = () => {
               <div className='p-2 px-4 mt-3 rounded-md hover:bg-slate-200 cursor-pointer flex gap-3' onClick={handleCart}>
                 <img className='h-6' src={cartImage} alt="cart-icon" />
                 <h2 className='font-semibold'>Keranjang</h2>
+                <div className='font-semibold bg-red-500 text-sm px-2 text-center rounded-full text-white'>{keranjangData.length}</div>
               </div>
             </div>
           </div>
@@ -92,8 +100,8 @@ const Dashboard = () => {
                 <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
               </div>
               <div className='leading-4 flex flex-col justify-center'>
-                <p className='font-bold text-sm'>Rafi Dwizulfa</p>
-                <p className='text-[12px] text-gray-600'>rafidwi3001@gmail.com</p>
+                <p className='font-bold text-sm'>{userData.nama}</p>
+                <p className='text-[12px] text-gray-600'>{userData.email}</p>
               </div>
             </div>
             <div className='text-center text-gray-600 text-[12px]'>
@@ -119,12 +127,9 @@ const Dashboard = () => {
           <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-1'>
             <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(1)}} id='paket-clicker-1'>
               <div className='flex items-center'>
-                <h2 className='font-bold text-xl'>Prediksi TKD & AKHLAK BUMN Paket #1</h2>
+                <p className='p-2 bg-orange-400 w-[80px] text-center rounded-md font-semibold text-white'>LPDP</p>
               </div>
-              <div className='flex items-center gap-3'>
-                <div >
-                  <p className='p-2 bg-orange-400 rounded-md font-semibold text-white'>BUMN</p>
-                </div>
+              <div className='flex items-center'>
                 <div className='w-8'>
                   <img className='h-8 w-8' src={arrowDown} alt="arrow-down" />
                 </div>
@@ -132,89 +137,40 @@ const Dashboard = () => {
             </div>
 
             <div className='overflow-hidden max-h-0 duration-1000' id='item-container-1'>
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
-                  </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full flex text-center'>
-                    <a className='bg-green-600/70 w-full py-1 rounded font-semibold' href='/ujian1'>Coba Lagi</a>
-                  </div>
-                </div>
-              </div>
 
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
-                  </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
-                  </div>
-                </div>
-              </div>
+              {ujianSayaData.map((ujian) => {
+                if (ujian.type === 'LPDP') {
 
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
+                 return <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between' key={ujian.ujianId}>
+                    <div className='p-3 flex-1'>
+                      <div>
+                        <p className='font-bold'>{ujian.Title}</p>
+                      </div>
+                      <div className='flex gap-3 items-center'>
+                        <img className='h-5' src={clockIcon} alt="clock-icon" />
+                        <p>Waktu: {ujian.waktu / 60000} Menit</p>
+                      </div>
+                      <div className='flex gap-3 items-center '>
+                        <img className='h-5' src={documentIcon} alt="document-icon" />
+                        <p>Soal: {ujian.Soal.length} Butir</p>
+                      </div>
+                    </div>
+                    <div className='flex flex-1 flex-col justify-center items-center'>
+                      <div>Nilai Terakhir</div>
+                      <div className='font-bold text-4xl'>{ujian.jawabanBenar} / {ujian.Soal.length}</div>
+                    </div>
+                    <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
+                      
+                      <div className='w-full flex text-center'>
+                        <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full font-semibold text-white'>Coba Lagi</button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
-                  </div>
-                </div>
-              </div>
+                }
+              })}
+
             </div>
 
           </div>
@@ -222,12 +178,9 @@ const Dashboard = () => {
           <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-2'>
             <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(2)}} id='paket-clicker-2'>
               <div className='flex items-center'>
-                <h2 className='font-bold text-xl'>Prediksi TKD & AKHLAK BUMN Paket #2</h2>
+                <p className='p-2 bg-[#5fa6f4] w-[80px] text-center rounded-md font-semibold text-white'>BUMN</p>
               </div>
               <div className='flex items-center gap-3'>
-                <div >
-                  <p className='p-2 bg-orange-400 rounded-md font-semibold text-white'>BUMN</p>
-                </div>
                 <div className='w-8'>
                   <img className='h-8 w-8' src={arrowDown} alt="arrow-down" />
                 </div>
@@ -235,101 +188,100 @@ const Dashboard = () => {
             </div>
 
             <div className='overflow-hidden max-h-0 duration-1000' id='item-container-2'>
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
-                  </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
-                  </div>
-                </div>
-              </div>
+              
+              {ujianSayaData.map((ujian) => {
+                if (ujian.type === 'BUMN') {
 
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
+                 return <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between' key={ujian.ujianId}>
+                    <div className='p-3 flex-1'>
+                      <div>
+                        <p className='font-bold'>{ujian.Title}</p>
+                      </div>
+                      <div className='flex gap-3 items-center'>
+                        <img className='h-5' src={clockIcon} alt="clock-icon" />
+                        <p>Waktu: {ujian.waktu / 60000} Menit</p>
+                      </div>
+                      <div className='flex gap-3 items-center '>
+                        <img className='h-5' src={documentIcon} alt="document-icon" />
+                        <p>Soal: {ujian.Soal.length} Butir</p>
+                      </div>
+                    </div>
+                    <div className='flex flex-1 flex-col justify-center items-center'>
+                      <div>Nilai Terakhir</div>
+                      <div className='font-bold text-4xl'>{ujian.jawabanBenar} / {ujian.Soal.length}</div>
+                    </div>
+                    <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
+                      
+                      <div className='w-full flex text-center'>
+                        <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Lagi</button>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
-                  </div>
-                </div>
-              </div>
-
-              <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between'>
-                <div className='p-3 flex-1'>
-                  <div>
-                    <p className='font-bold'>Paket 1 - Diagram Reasoning</p>
-                  </div>
-                  <div className='flex gap-3 items-center'>
-                    <img className='h-5' src={clockIcon} alt="clock-icon" />
-                    <p>Waktu: 20 Menit</p>
-                  </div>
-                  <div className='flex gap-3 items-center '>
-                    <img className='h-5' src={documentIcon} alt="document-icon" />
-                    <p>Soal: 25 Butir</p>
-                  </div>
-                </div>
-                <div className='flex flex-1 flex-col justify-center items-center'>
-                  <div>Nilai Terakhir</div>
-                  <div className='font-bold text-4xl'>0 / 25</div>
-                </div>
-                <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
-                  <div className='w-full'>
-                    <button className='bg-gray-200 w-full py-1 rounded font-semibold'>Pembahasan</button>
-                  </div>
-                  <div className='w-full'>
-                  <button className='bg-green-600/70 w-full py-1 rounded font-semibold'>Coba Lagi</button>
-                  </div>
-                </div>
-              </div>
+                }
+              })}
+              
             </div>
 
           </div>
 
-          
+          <div className='bg-white rounded-md border duration-700 mb-4' id='paket-container-3'>
+            <div className='p-3 bg-lime-500/20 rounded-md flex justify-between shadow-lg hover:shadow-xl cursor-pointer duration-700' onClick={() => {handlePaket(3)}} id='paket-clicker-3'>
+              <div className='flex items-center'>
+                <p className='p-2 bg-[#f373b4] w-[80px] text-center rounded-md font-semibold text-white'>CPNS</p>
+              </div>
+              <div className='flex items-center gap-3'>
+                <div className='w-8'>
+                  <img className='h-8 w-8' src={arrowDown} alt="arrow-down" />
+                </div>
+              </div>
+            </div>
+
+            <div className='overflow-hidden max-h-0 duration-1000' id='item-container-3'>
+              
+              {ujianSayaData.map((ujian) => {
+                if (ujian.type === 'CPNS') {
+
+                 return <div className='m-3 bg-white shadow-md rounded-md flex flex-col min-[712px]:flex-row justify-between' key={ujian.ujianId}>
+                    <div className='p-3 flex-1'>
+                      <div>
+                        <p className='font-bold'>{ujian.Title}</p>
+                      </div>
+                      <div className='flex gap-3 items-center'>
+                        <img className='h-5' src={clockIcon} alt="clock-icon" />
+                        <p>Waktu: {ujian.waktu / 60000} Menit</p>
+                      </div>
+                      <div className='flex gap-3 items-center '>
+                        <img className='h-5' src={documentIcon} alt="document-icon" />
+                        <p>Soal: {ujian.Soal.length} Butir</p>
+                      </div>
+                    </div>
+                    <div className='flex flex-1 flex-col justify-center items-center'>
+                      <div>Nilai Terakhir</div>
+                      <div className='font-bold text-4xl'>{ujian.jawabanBenar} / {ujian.Soal.length}</div>
+                    </div>
+                    <div className='flex flex-1 flex-col items-center justify-center gap-3 p-3'>
+                      <div className='w-full flex text-center'>
+                        <Link className='w-full' to={`/ujian/${ujian.ujianId}`}>
+                          <button className='bg-green-600/70 w-full py-2 rounded-full text-white font-semibold'>Coba Lagi</button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                }
+              })}
+              
+            </div>
+
+          </div>
         </div>
 
         <div className='fixed bg-white top-0 right-0 bottom-0 border max-w-[900px] py-10 px-3 md:px-10 w-full translate-x-[1000px] duration-700 z-[10000]' id='cart-layer'>
           <div className='flex flex-col gap-4 w-full'>
             <div className='flex gap-4 items-center'>
               <div className='flex-1'>
-                <h1 className='font-bold text-2xl'>Keranjang Belanja (4 Ujian)</h1>
+                <h1 className='font-bold text-2xl'>Keranjang Belanja ({keranjangData.length} Ujian)</h1>
               </div>
               <div className='h-8 w-8 flex items-center justify-center bg-gray-200 rounded-md p-5 cursor-pointer' onClick={handleClose}>
                 <p className='font-bold text-2xl'>X</p>
@@ -337,70 +289,44 @@ const Dashboard = () => {
             </div>
 
             <div className='flex flex-col gap-2'>
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
+              {keranjangData.map((ujian) => {
+                totalHargaKeranjang += ujian.harga
+                
+               return <div key={ujian.ujianId} className='flex flex-col md:flex-row border p-2 rounded-md'>
+                  <div className='flex-1'>
+                    <p className='font-semibold'>{ujian.Title}</p>
+                   
+                    <p className='font-bold'>{ujian.type}</p>
+                    
                   </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
+                  <div className='flex-1 flex justify-between items-center'>
+                    <div className='flex gap-4'>
+                      <p className='font-bold'>Rp. {ujian.harga.toLocaleString('id-ID')}</p>
+                    </div>
+                    <div>
+                      <p className='font-semibold hover:underline cursor-pointer' onClick={() => {removeFromKeranjang(ujian)}}>Delete</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className='flex flex-col md:flex-row border p-2 rounded-md'>
-                <div className='flex-1'>
-                  <p className='font-semibold'>Tryout seleksi LPDP 2024</p>
-                  <p>Tryout prediksi seleksi LPDP 2024</p>
-                </div>
-                <div className='flex-1 flex justify-between items-center'>
-                  <div className='flex gap-4'>
-                    <s className='text-gray-300'>Rp. 50.000</s>
-                    <p className='font-semibold'>Rp. 35.000</p>
-                  </div>
-                  <div>
-                    <p className='font-semibold hover:underline cursor-pointer'>Delete</p>
-                  </div>
-                </div>
-              </div>
+              })}
             </div>
+
+            <div className='border p-4 rounded-md'>
+              <div>
+                <p className='font-bold text-lg'>Ringkasan Belanja</p>
+              </div>
+              <div className='flex justify-between'>
+                <p className='font-semibold '>Total</p>
+                <p className='font-bold'>Rp. {totalHargaKeranjang.toLocaleString('id-ID')}</p>
+              </div>
+
+              {keranjangData.length > 0 && 
+              <div className='flex justify-center'>
+                <button className='bg-[#35b486] p-2 mt-6 text-white font-bold w-full max-w-[300px] rounded-full' onClick={handlePembayaran} >Process</button>
+              </div>
+              }
+            </div>
+
           </div>
         </div>
 
@@ -437,8 +363,8 @@ const Dashboard = () => {
                   <img className='h-8 rounded-full' src={photoProfile} alt="photo-profile" />
                 </div>
                 <div className='leading-4 flex flex-col justify-center'>
-                  <p className='font-bold text-sm'>Rafi Dwizulfa</p>
-                  <p className='text-[12px] text-gray-600'>rafidwi3001@gmail.com</p>
+                  <p className='font-bold text-sm'>{userData.nama}</p>
+                  <p className='text-[12px] text-gray-600'>{userData.email}</p>
                 </div>
               </div>
               <div className='text-center text-gray-600 text-[12px]'>

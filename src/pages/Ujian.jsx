@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState} from 'react'
+import React, {useEffect, useContext, useState, useRef} from 'react'
 import keteranganUjian from '../images/keterangan-ujian.svg'
 import nextIcon from '../icons/next.png'
 import backIcon from '../icons/back.png'
@@ -18,10 +18,17 @@ const Ujian1 = () => {
     ujianId:'',
     waktu:0,
     Soal:[],
-
+    jawabanBenar:0,
   })
-  const [questionIndex, setQuestionIndex] = useState(0)
-  const bankSoal = useContext(QuestionContext).bankSoal;
+
+  const intervalRef = useRef(null);
+  const ujianRef = useRef(ujian);
+
+  useEffect(() => {
+    ujianRef.current = ujian;
+  }, [ujian]);
+
+  const [questionIndex, setQuestionIndex] = useState(0);
   const {ujianId} = useParams();
   const allSoal = useContext(QuestionContext).allSoal;
 
@@ -41,11 +48,58 @@ const Ujian1 = () => {
     }
   }
 
-  const handleSelectAnswer = () => {
+  const handleSelesai = () => {
+    if(localStorage.getItem('auth-token')) {
 
+      let currentJawabanBenar = 0;
+
+      ujianRef.current.Soal.map((soal) => {
+        if (soal.currentAnswer === soal.Jawaban) {
+          console.log('benar');
+          currentJawabanBenar += 1;
+          
+        }
+      })
+
+      console.log('Total Correct Answers:', currentJawabanBenar);
+
+      
+        const updatedUjian = { ...ujianRef.current, jawabanBenar: currentJawabanBenar };
+        
+        fetch('http://localhost:4000/selesaiujian', {
+          method:'POST',
+          headers : {
+            Accept:'application/form-data',
+            'auth-token':`${localStorage.getItem('auth-token')}`,
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({ujian:updatedUjian})
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.message);
+          clearInterval(intervalRef.current); 
+          window.location.href = '/platform/ujiansaya';
+          
+        })
+      
+
+    }
   }
 
-  
+  useEffect(() => {
+    intervalRef.current = setTimeout(() => {
+      handleSelesai();
+    }, (10 * 60 + 5) * 1000); // 10 minutes and 5 seconds
+
+    return () => clearTimeout(intervalRef.current); 
+  }, []);
+
+  const handleManualSubmit = () => {
+    clearTimeout(intervalRef.current); 
+    handleSelesai();
+  };
+
 
   useEffect(() => {
     const findUjian = () => {
@@ -57,7 +111,8 @@ const Ujian1 = () => {
               Title: ujian.Title,
               ujianId: ujian.ujianId,
               waktu: ujian.waktu,
-              Soal: ujian.Soal
+              Soal: ujian.Soal,
+              jawabanBenar:ujian.jawabanBenar
             }))
             
           }
@@ -104,12 +159,12 @@ const Ujian1 = () => {
       </div>
       <div className='p-6 min-[1000px]:px-28 flex flex-col min-[1000px]:flex-row gap-4' id='question'>
         <div className=' w-full flex flex-col order-2 min-[1000px]:order-1 gap-3'>
-          <div className='border py-7 px-12 bg-[#e5efee] w-full rounded-md '>
+          <div className='border p-7 min-[500px]:px-12 bg-[#e5efee] w-full rounded-md '>
             <div className='flex flex-col gap-3'>
               <div>
                 <h3 className='text-xl text-gray-500'>Soal {questionIndex + 1}</h3>
               </div>
-              <div className='bg-white rounded-md p-2 text-xl text-justify'>
+              <div className='bg-white rounded-md p-2 text-xl '>
                 <p>{currentQuestion && currentQuestion.pertanyaan ? currentQuestion.pertanyaan : ''}
               </p>
               </div>
@@ -162,7 +217,7 @@ const Ujian1 = () => {
             <div>
               <button className='px-8 py-2 rounded-full bg-slate-400 flex gap-3 items-center' 
               onClick={() => {
-                dispatch({type: "PREVIOUS_QUESTION"});
+                // dispatch({type: "PREVIOUS_QUESTION"});
                 handlePrev()
                 }}>
                 <img className='h-5' src={backIcon} alt="backIcon" />
@@ -195,7 +250,7 @@ const Ujian1 = () => {
             <div>
               <button className='px-8 py-2 rounded-full bg-[#529493] flex items-center gap-3' 
                 onClick={() => {
-                  dispatch({type: "NEXT_QUESTION"});
+                  // dispatch({type: "NEXT_QUESTION"});
                   handleNext();
                 }}>
                 <p className='font-bold text-white's>Next</p>
@@ -229,7 +284,7 @@ const Ujian1 = () => {
             </div>
           </div>
           <div className='flex text-center'>
-            <a className='w-full bg-gray-400 text-white p-2 rounded-md font-semibold' href='/platform'>Selesai</a>
+            <button className='w-full bg-gray-400 text-white p-2 rounded-md font-semibold' onClick={handleManualSubmit}>Selesai</button>
           </div>
         </div>
       </div>
